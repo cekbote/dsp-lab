@@ -104,7 +104,7 @@ void loop() {
 Derivative Filter (First Order Difference)
 ---
 
-The mathematical expression for a moving average filter in the time domain is: 
+The mathematical expression for a erivative Filter (First Order Difference) filter in the time domain is: 
 
 <p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=y[n]&space;=&space;x[n]&space;-&space;x[n-1]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y[n]&space;=&space;x[n]&space;-&space;x[n-1]" title="y[n] = x[n] - x[n-1]" /></a></p>
 
@@ -129,7 +129,7 @@ The Pole - Zero plot is:
 #### Intuition for the Working of the Filter
 ------
 
-A moving average filter is a low pass filter. The intuition for this can be obtained via the following thought experiment:
+A erivative Filter (First Order Difference) is a high pass filter. The intuition for this can be obtained via the following thought experiment:
 
 <p float="left" align = "center">
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Constant.PNG" width="280"/>
@@ -192,7 +192,7 @@ void loop() {
 Derivative Filter (Three Point Central Difference)
 ---
 
-The mathematical expression for a moving average filter in the time domain is: 
+The mathematical expression for a Derivative Filter (Three Point Central Difference) filter in the time domain is: 
 
 <p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=y[n]&space;=&space;x[n]&space;-&space;x[n-2]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y[n]&space;=&space;x[n]&space;-&space;x[n-2]" title="y[n] = x[n] - x[n-2]" /></a></p>
 
@@ -217,7 +217,7 @@ The Pole - Zero plot is:
 #### Intuition for the Working of the Filter
 ------
 
-A moving average filter is a low pass filter. The intuition for this can be obtained via the following thought experiment:
+A Derivative Filter (Three Point Central Difference) is a band pass filter. The intuition for this can be obtained via the following thought experiment:
 
 <p float="left" align = "center">
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Constant.PNG" width="280"/>
