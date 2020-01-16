@@ -139,7 +139,7 @@ A moving average filter is a low pass filter. The intuition for this can be obta
 
 &nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ 
 
-If we take any L point moving average of the signal in _Fig.1_ we get the original signal back without any irregularities. However if we take an L point moving average of the signal in _Fig,2_ some components of the signal are lost. If we take an L point moving average of the signal in _Fig.3_ the signal dimishes a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a moving average filter can be used to filter out components of a signal that change very fast (high frequency signals). Hence, a moving average filter is a low pass filter. 
+If we take a first order difference of the signal in _Fig.1_ we get back a zero value. However if we take a first order difference of the signal in _Fig,2_ we get a definite output that . If we take an L point moving average of the signal in _Fig.3_ the signal dimishes a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a moving average filter can be used to filter out components of a signal that change very fast (high frequency signals). Hence, a moving average filter is a low pass filter. 
 
 #### Magnitude Response and Phase Response Plots
 
@@ -150,13 +150,13 @@ If we take any L point moving average of the signal in _Fig.1_ we get the origin
 
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Magnitude Response_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Phase Response_
 
-From the magnitude response we can confirm that a moving average filter is a low pass filter.
+From the magnitude response we can confirm that a Derivative Filter (First Order Difference) is a high pass filter.
 
 #### Arduino Code
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
-float x = 0;
+float y = 0;
 int num_of_data = 1000;
 
 void setup() {
@@ -168,23 +168,21 @@ void loop() {
   // put your main code here, to run repeatedly:
   for (int i = 0; i< 1000; i++)
   { 
-    x = 0;
-    // Moving Average
-    if (i<8)
-      {for(int k=0; k<i; k++)
-        {x += arr[i-k] 
-          }
-        }
-    else
-    {for(int j=0; j<8; j++)
-      {
-        x += arr[i-j];
-        }
+    y = 0;
+
+     // First Order Difference
+     if (i == 0)
+     {
+      y = 0;
       }
-      
+      else
+      {
+        y = arr[i] - arr[i-1];
+        }
+
      Serial.print(arr[i]);
      Serial.print(',');
-     Serial.println(x/8);
+     Serial.println(y);
      }
 }
 ```
