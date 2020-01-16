@@ -294,8 +294,101 @@ _Baseline Drift_ can be obtained by using an L point Moving Average Filter, wher
 
 Another method to obtain the _NFS_ is first obtain the _BD_ and subtract the _BD_ from the _Data_. Next we pass the _Data - BD_ to a moving average filter. This would reduce the high frequency components. However, even after this some, medium to high frequency components may remain. So we pass this _Data - BD_ through a Derivative Filter to obtain some of the remaining medium to high frequency components. This is done by taking a First Order Difference or a Three Point Central Difference depending on the application and the accuracy you desire. Then again subtract these medium to high frequency components from the _Data - BD_ to obtain the _NFS_.  
 
+#### Arduino Code for Obtaining the Baseline Drift
 
+```cpp
+float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
+float x = 0;
+int num_of_data = 1000;
 
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for (int i = 0; i< 1000; i++)
+  { 
+    x = 0;
+    
+    // Moving Average
+    if (i< 800)
+      {
+        for (int p = 0; p < i; p ++)
+        {
+          x += arr[p];
+          }
+        }
+    else
+    {for(int j=0; j<800; j++)
+      {
+        x += arr[i-j];
+        }
+      }
+      
+     Serial.print(arr[i]);
+     Serial.print(',');
+     Serial.println(x/800);
+     }
+}
+```
+
+#### Arduino Code for Getting the Medium to High Frequency Components
+
+#### Arduino Code for Obtaining the Baseline Drift
+
+```cpp
+float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
+float x = 0;
+float z[1000]; 
+int num_of_data = 1000;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for (int i = 0; i< 1000; i++)
+  { 
+    x = 0;
+
+      // Second Order Difference
+        if (i < 2)
+      {
+          z[i] = 0; 
+      }
+        else
+        {
+         z[i] = arr[i] - arr[i-2];
+        }
+
+      // Averaging the Difference
+
+          // Moving Average
+    // Moving Average
+    if (i< 8)
+      {
+        for (int p = 0; p < i; p ++)
+        {
+          x += arr[p];
+          }
+        }
+    else
+    {for(int j=0; j<8; j++)
+      {
+        x += arr[i-j];
+        }
+      }
+
+     Serial.print(arr[i]);
+     Serial.print(',');
+     Serial.println(z[i]/8);
+     }
+}
+```
 
 
 
