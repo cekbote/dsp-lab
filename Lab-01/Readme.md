@@ -187,5 +187,94 @@ void loop() {
 }
 ```
 
+----
+
+Derivative Filter (Three Point Central Difference)
+---
+
+The mathematical expression for a moving average filter in the time domain is: 
+
+<p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=y[n]&space;=&space;x[n]&space;-&space;x[n-2]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y[n]&space;=&space;x[n]&space;-&space;x[n-2]" title="y[n] = x[n] - x[n-2]" /></a></p>
+
+
+In the Z domain the equation is: 
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=Y(z)&space;=&space;(1&space;-&space;z^{-2})X(z)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Y(z)&space;=&space;(1&space;-&space;z^{-2})X(z)" title="Y(z) = (1 - z^{-2})X(z)" /></a></p>
+
+The Transfer Function is: 
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=H(z)&space;=&space;\frac{Y(z)}{X(z)}&space;=&space;\frac{z^{2}&space;-&space;1}{z^{2}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?H(z)&space;=&space;\frac{Y(z)}{X(z)}&space;=&space;\frac{z^{2}&space;-&space;1}{z^{2}}" title="H(z) = \frac{Y(z)}{X(z)} = \frac{z^{2} - 1}{z^{2}}" /></a></p>
+
+The Magnitude and Phase responses are: 
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=|H(jw)|&space;=&space;2sin(w)&space;\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;tan^{-1}(cot(w))" target="_blank"><img src="https://latex.codecogs.com/gif.latex?|H(jw)|&space;=&space;2sin(w)&space;\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;tan^{-1}(cot(w))" title="|H(jw)| = 2sin(w) \enspace \enspace \enspace \angle H(jw) = tan^{-1}(cot(w))" /></a></p>
+
+The Pole - Zero plot is:
+
+
+<p align = "center"><img style="float: right;" src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/PZ_DE_2.jpg" >
+
+#### Intuition for the Working of the Filter
+------
+
+A moving average filter is a low pass filter. The intuition for this can be obtained via the following thought experiment:
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Constant.PNG" width="280"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Sine_05.PNG" width="280" /> 
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Sine_4.PNG" width="280" />
+</p>
+
+&nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ 
+
+If we take a first order difference of the signal in _Fig.1_ we get back a zero value. However if we take a first order difference of the signal in _Fig,2_ we get a definite output. If we take a first order difference in _Fig.3_ output increases a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a first order difference filter enhances signals with a faster rate of change (higher frequency) as compared to ones of lower frequencies. Therefore, a first order difference filter can be used to filter out components of a signal that change very slowly (low frequency signals). Hence, a moving average filter is a high pass filter. 
+
+#### Magnitude Response and Phase Response Plots
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Mag_DE_2.jpg" width = "430"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Freq_DE_2.jpg" width = "430" /> 
+</p>
+
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Magnitude Response_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Phase Response_
+
+From the magnitude response we can confirm that a Derivative Filter (Three Point Central Difference) is a band pass filter.
+
+#### Arduino Code
+
+```cpp
+float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
+float z = 0;
+int num_of_data = 1000;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for (int i = 0; i< 1000; i++)
+  { 
+    z = 0;
+
+      // Second Order Difference
+        if (i < 2)
+      {
+          z = arr[i]; 
+      }
+        else
+        {
+         z = arr[i] - arr[i-2];
+        }
+
+     Serial.print(arr[i]);
+     Serial.print(',');
+     Serial.print(z);
+     }
+}
+```
+
+
 
 
