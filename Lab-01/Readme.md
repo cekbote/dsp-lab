@@ -47,4 +47,4 @@ A moving average filter is a low pass filter. The intuition for this can be obta
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Sine_4.PNG" width="280" />
 </p>
 
-&nbsp; Fig.1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fig.2 &nbsp; &nbsp; &nbsp; Fig.3 
+&nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Fig.2_ 
