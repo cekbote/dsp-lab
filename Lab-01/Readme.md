@@ -99,4 +99,95 @@ void loop() {
 }
 ```
 
+----
+
+Derivative Filter (First Order Difference)
+---
+
+The mathematical expression for a moving average filter in the time domain is: 
+
+<p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=y[n]&space;=&space;x[n]&space;-&space;x[n-1]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y[n]&space;=&space;x[n]&space;-&space;x[n-1]" title="y[n] = x[n] - x[n-1]" /></a></p>
+
+
+In the Z domain the equation is: 
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=Y(z)=(1-z^{-1})X(z)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Y(z)=(1-z^{-1})X(z)" title="Y(z)=(1-z^{-1})X(z)" /></a></p>
+
+The Transfer Function is: 
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=H(z)=\frac{Y(z)}{X(z)}=\frac{z-1}{z}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?H(z)=\frac{Y(z)}{X(z)}=\frac{z-1}{z}" title="H(z)=\frac{Y(z)}{X(z)}=\frac{z-1}{z}" /></a></p>
+
+The Magnitude and Phase responses are: 
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=|H(jw)|&space;=&space;1/8&space;*&space;\frac{sin(8w/2)}{w/2}\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;e^{-7/2jw}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?|H(jw)|&space;=&space;1/8&space;*&space;\frac{sin(8w/2)}{w/2}\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;e^{-7/2jw}" title="|H(jw)| = 1/8 * \frac{sin(8w/2)}{w/2}\enspace \enspace \enspace \angle H(jw) = e^{-7/2jw}" /></a></a></p>
+
+The Pole - Zero plot is:
+
+
+<p align = "center"><img style="float: right;" src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/PZ_MA.jpg" >
+
+#### Intuition for the Working of the Filter
+------
+
+A moving average filter is a low pass filter. The intuition for this can be obtained via the following thought experiment:
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Constant.PNG" width="280"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Sine_05.PNG" width="280" /> 
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Sine_4.PNG" width="280" />
+</p>
+
+&nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ 
+
+If we take any L point moving average of the signal in _Fig.1_ we get the original signal back without any irregularities. However if we take an L point moving average of the signal in _Fig,2_ some components of the signal are lost. If we take an L point moving average of the signal in _Fig.3_ the signal dimishes a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a moving average filter can be used to filter out components of a signal that change very fast (high frequency signals). Hence, a moving average filter is a low pass filter. 
+
+#### Magnitude Response and Phase Response Plots
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Mag_MA.jpg" width = "430"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Freq_MA.jpg" width = "430" /> 
+</p>
+
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Magnitude Response_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Phase Response_
+
+From the magnitude response we can confirm that a moving average filter is a low pass filter.
+
+#### Arduino Code
+
+```cpp
+float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
+float x = 0;
+int num_of_data = 1000;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for (int i = 0; i< 1000; i++)
+  { 
+    x = 0;
+    // Moving Average
+    if (i<8)
+      {for(int k=0; k<i; k++)
+        {x += arr[i-k] 
+          }
+        }
+    else
+    {for(int j=0; j<8; j++)
+      {
+        x += arr[i-j];
+        }
+      }
+      
+     Serial.print(arr[i]);
+     Serial.print(',');
+     Serial.println(x/8);
+     }
+}
+```
+
+
 
