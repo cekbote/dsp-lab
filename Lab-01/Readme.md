@@ -99,6 +99,14 @@ void loop() {
 }
 ```
 
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/ma.gif"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
+
 ----
 
 Derivative Filter (First Order Difference)
@@ -186,6 +194,14 @@ void loop() {
      }
 }
 ```
+
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/fdf.gif"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
 
 ----
 
@@ -275,6 +291,14 @@ void loop() {
 }
 ```
 
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/sf.gif"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
+
 ----
 
 Practical Uses of the Filters
@@ -334,7 +358,15 @@ void loop() {
 }
 ```
 
-#### Arduino Code for Obtaining the Baseline Drift
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/ma800.gif"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
+
+#### Arduino Code for obtaining the reamaining medium to high frequency commponents of the Noise Signal 
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
@@ -387,6 +419,14 @@ void loop() {
      }
 }
 ```
+
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/dfma.gif"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
 
 
 
