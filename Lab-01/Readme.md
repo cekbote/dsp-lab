@@ -292,6 +292,7 @@ _Baseline Drift_ can be obtained by using an L point Moving Average Filter, wher
 
 <p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=NFS&space;=&space;Data&space;-&space;BD&space;-&space;N" target="_blank"><img src="https://latex.codecogs.com/gif.latex?NFS&space;=&space;Data&space;-&space;BD&space;-&space;N" title="NFS = Data - BD - N" /></a></p>
 
+Another method to obtain the _NFS_ is first obtain the _BD_ and subtract the _BD_ from the _Data_. Next we pass the _Data - BD_ to a moving average filter. This would reduce the high frequency components. However, even after this some, medium to high frequency components may remain. So we pass this _Data - BD_ through a Derivative Filter to obtain some of the remaining medium to high frequency components. This is done by taking a First Order Difference or a Three Point Central Difference depending on the application and the accuracy you desire. Then again subtract these medium to high frequency components from the _Data - BD_ to obtain the _NFS_.  
 
 
 
