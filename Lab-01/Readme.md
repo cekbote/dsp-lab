@@ -49,7 +49,7 @@ A moving average filter is a low pass filter. The intuition for this can be obta
 
 &nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ 
 
-If we take any L point moving average of the signal in _Fig.1_ we get the original signal back without any irregularities. However if we take an L point moving average of the signal in _Fig,2_ some components of the signal are lost. If we take an L point moving average of the signal in _Fig.3_ the signal dimishes a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a moving average filter can be used to filter out components of a signal that change very fast (high frequency signals). Hence, a moving average filter is a low pass filter. 
+If we take any L point moving average of the signal in _Fig.1_ we get the original signal back without any irregularities. However if we take an L point moving average of the signal in _Fig.2_ some components of the signal are lost. If we take an L point moving average of the signal in _Fig.3_ the signal dimishes a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a moving average filter can be used to filter out components of a signal that change very fast (high frequency signals). Hence, a moving average filter is a low pass filter. 
 
 #### Magnitude Response and Phase Response Plots
 
@@ -139,7 +139,7 @@ A moving average filter is a low pass filter. The intuition for this can be obta
 
 &nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ 
 
-If we take a first order difference of the signal in _Fig.1_ we get back a zero value. However if we take a first order difference of the signal in _Fig,2_ we get a definite output. If we take a first order difference in _Fig.3_ output increases a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a first order difference filter enhances signals with a faster rate of change (higher frequency) as compared to ones of lower frequencies. Therefore, a first order difference filter can be used to filter out components of a signal that change very slowly (low frequency signals). Hence, a moving average filter is a high pass filter. 
+If we take a first order difference of the signal in _Fig.1_ we get back a zero value. However if we take a first order difference of the signal in _Fig.2_ we get a definite output. If we take a first order difference of the signal in  _Fig.3_, the  output increases a lot, even more than the first order differnce of the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_, and hence its derivative is much more. Therefore, we can say that a first order difference filter enhances signals with a faster rate of change (higher frequency) as compared to ones of lower frequencies. Therefore, a first order difference filter can be used to filter out components of a signal that change very slowly (low frequency signals). Hence, a moving average filter is a high pass filter. 
 
 #### Magnitude Response and Phase Response Plots
 
@@ -227,7 +227,7 @@ A moving average filter is a low pass filter. The intuition for this can be obta
 
 &nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ 
 
-If we take a first order difference of the signal in _Fig.1_ we get back a zero value. However if we take a first order difference of the signal in _Fig,2_ we get a definite output. If we take a first order difference in _Fig.3_ output increases a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. Therefore, we can say that a first order difference filter enhances signals with a faster rate of change (higher frequency) as compared to ones of lower frequencies. Therefore, a first order difference filter can be used to filter out components of a signal that change very slowly (low frequency signals). Hence, a moving average filter is a high pass filter. 
+If we take a first order difference of the signal in _Fig.1_ we get back a zero value. However if we take a first order difference of the signal in _Fig.2_ we get a definite output. If we take a first order difference of the signal in _Fig.3_ output increases a lot, even more than the signal in _Fig.2_. This is because the signal in _Fig.3_ is changing very fast as compared to the signal in _Fig.2_. However, if the frequency of the signal in _Fig.3_ is very high, then it is possible, that a three point central difference outputs a very small value. That can be because the x[n] corresponds a large positive value and the x[n-2] corresponds to the same or a similar value. (If the time period of the signal is such that it is less than 2 units of time {as x[n-2] }). Therefore, we can say that a three point central difference filter is a band pass filter. 
 
 #### Magnitude Response and Phase Response Plots
 
@@ -274,6 +274,7 @@ void loop() {
      }
 }
 ```
+
 
 
 
