@@ -119,12 +119,12 @@ The Transfer Function is:
 
 The Magnitude and Phase responses are: 
 
-<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=|H(jw)|&space;=&space;1/8&space;*&space;\frac{sin(8w/2)}{w/2}\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;e^{-7/2jw}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?|H(jw)|&space;=&space;1/8&space;*&space;\frac{sin(8w/2)}{w/2}\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;e^{-7/2jw}" title="|H(jw)| = 1/8 * \frac{sin(8w/2)}{w/2}\enspace \enspace \enspace \angle H(jw) = e^{-7/2jw}" /></a></a></p>
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=|H(jw)|&space;=&space;2sin(w/2)\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;tan^{-1}(cot(w/2))" target="_blank"><img src="https://latex.codecogs.com/gif.latex?|H(jw)|&space;=&space;2sin(w/2)\enspace&space;\enspace&space;\enspace&space;\angle&space;H(jw)&space;=&space;tan^{-1}(cot(w/2))" title="|H(jw)| = 2sin(w/2)\enspace \enspace \enspace \angle H(jw) = tan^{-1}(cot(w/2))" /></a></p>
 
 The Pole - Zero plot is:
 
 
-<p align = "center"><img style="float: right;" src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/PZ_MA.jpg" >
+<p align = "center"><img style="float: right;" src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/PZ_DE_1.jpg" >
 
 #### Intuition for the Working of the Filter
 ------
@@ -144,8 +144,8 @@ If we take any L point moving average of the signal in _Fig.1_ we get the origin
 #### Magnitude Response and Phase Response Plots
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Mag_MA.jpg" width = "430"/>
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Freq_MA.jpg" width = "430" /> 
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Mag_DE_1.jpg" width = "430"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Freq_DE_1.jpg" width = "430" /> 
 </p>
 
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Magnitude Response_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Phase Response_
