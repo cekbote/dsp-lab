@@ -43,8 +43,8 @@ A moving average filter is a low pass filter. The intuition for this can be obta
 
 <p float="left" align = "center">
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Constant.PNG" width="280"/>
-  <figcaption>Fig.1</figcaption>
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Sine_05.PNG" width="280" /> 
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Sine_4.PNG" width="280" />
 </p>
 
+&nbsp; Fig.1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fig.2 &nbsp; &nbsp; &nbsp; Fig.3 
