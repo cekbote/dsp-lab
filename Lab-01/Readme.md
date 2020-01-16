@@ -58,4 +58,45 @@ If we take any L point moving average of the signal in _Fig.1_ we get the origin
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Images/Freq_MA.jpg" width = "430" /> 
 </p>
 
-&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Magnitude Response_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Frequency Response_
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Magnitude Response_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Phase Response_
+
+From the magnitude response we can confirm that a moving average filter is a low pass filter.
+
+#### Arduino Code
+
+```cpp
+float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
+float x = 0;
+int num_of_data = 1000;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for (int i = 0; i< 1000; i++)
+  { 
+    x = 0;
+    // Moving Average
+    if (i<8)
+      {for(int k=0; k<i; k++)
+        {x += arr[i-k] 
+          }
+        }
+    else
+    {for(int j=0; j<8; j++)
+      {
+        x += arr[i-j];
+        }
+      }
+      
+     Serial.print(arr[i]);
+     Serial.print(',');
+     Serial.println(x/8);
+     }
+}
+```
+
+
