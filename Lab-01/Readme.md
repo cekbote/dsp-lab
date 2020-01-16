@@ -9,6 +9,11 @@ To implement and explain the uses of:
 2. Derivative Filter (First Order Difference)
 3. Derivative Filter (Three Point Central Difference) 
 
+**Date and Code Links**
+
+1. The Lab Sheet for the experiment can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Lab%20Sheet/DSP-Experiment01.pdf)
+2. The Arduino Codes can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-01/Arduino%20Code)
+3. The Matlab Codes for the Pole - Zero Plots as well as the Magnitude and Frequency Response can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Matlab%20Code/Filters.m)
 ---
 
 Moving Average Filter
