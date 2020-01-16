@@ -275,6 +275,27 @@ void loop() {
 }
 ```
 
+----
+
+Practical Uses of the Filters
+---
+
+The Data we have used is from a PPG sensor. Now this data represents an addition of the following:
+
+1. __Noise Free Signal (NFS)__ This is a Noise Free Signal that we have to obtain.
+2. __Baseline Drift (BD) :__ Usually a biological signal's mean amplitude (over a large period of time) remains constant. However, in our experiment, the mean varies. This can be because of multiple factors such as motion of the person, or even due to the heartbeat. This has to be eleminated to garner a proper understanding of the original signal.  
+3. __Noise (N):__ Noise consists of high freqeuency components and these have to be filtered out.
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=Data&space;=&space;NFS&space;&plus;&space;BD&space;&plus;&space;N" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Data&space;=&space;NFS&space;&plus;&space;BD&space;&plus;&space;N" title="Data = NFS + BD + N" /></a></p>
+
+_Baseline Drift_ can be obtained by using an L point Moving Average Filter, where the L is very large. _Noise_ can be obtained by passing the signal through a Derivative Filter (First Order Difference). Once these two are obtained, we can get the _NFS_ by subtracting the _BD_ and _N_ from the data.
+
+<p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=NFS&space;=&space;Data&space;-&space;BD&space;-&space;N" target="_blank"><img src="https://latex.codecogs.com/gif.latex?NFS&space;=&space;Data&space;-&space;BD&space;-&space;N" title="NFS = Data - BD - N" /></a></p>
+
+
+
+
+
 
 
 
