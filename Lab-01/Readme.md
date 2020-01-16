@@ -105,7 +105,7 @@ __Plots derived from the Arduino Code__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/ma.gif"/>
 </p>
 
-<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
 
 ----
 
@@ -201,7 +201,7 @@ __Plots derived from the Arduino Code__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/fdf.gif"/>
 </p>
 
-<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
 
 ----
 
@@ -297,7 +297,7 @@ __Plots derived from the Arduino Code__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/sf.gif"/>
 </p>
 
-<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
 
 ----
 
@@ -364,7 +364,7 @@ __Plots derived from the Arduino Code__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/ma800.gif"/>
 </p>
 
-<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates Processed Signal</i></p>
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
 
 #### Arduino Code for obtaining the reamaining medium to high frequency commponents of the Noise Signal 
 
