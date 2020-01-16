@@ -334,8 +334,6 @@ void loop() {
 }
 ```
 
-#### Arduino Code for Getting the Medium to High Frequency Components
-
 #### Arduino Code for Obtaining the Baseline Drift
 
 ```cpp
