@@ -371,7 +371,7 @@ __Plots derived from the Arduino Code__
 
 <p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
 
-#### Arduino Code for obtaining the reamaining medium to high frequency commponents of the Noise Signal 
+#### Arduino Code for obtaining the remaining medium to high frequency commponents of the Noise Signal 
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
