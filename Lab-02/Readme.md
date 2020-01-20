@@ -1,4 +1,4 @@
-Lab 1
+Lab 2
 ===========
 
 **Aim:**
@@ -9,6 +9,10 @@ To implement and explain the uses of:
 2. Derivative Filter (First Order Difference)
 3. Derivative Filter (Three Point Central Difference) 
 
+By:
+
+1. Using a live PPG Signal
+2. Using two different ECG Signals
 **Date and Code Links**
 
 1. The Lab Sheet for the experiment can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Lab%20Sheet/DSP-Experiment01.pdf)
