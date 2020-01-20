@@ -104,7 +104,56 @@ If we take any L point moving average of the signal in _Fig.1_ we get the origin
 
 From the magnitude response we can confirm that a moving average filter is a low pass filter.
 
-#### Arduino Code
+#### Arduino Code for live PPG Data
+```cpp
+int data_num = 1000;
+float data[1000];
+float bd[1000];
+float x = 0;
+int analog_pin = A0;
+int l_point_low = 8;
+int l_point_high = int(0.8*data_num);
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for(int i=0; i<data_num; i++)
+  {
+    data[data_num - 1 - i] = analogRead(analog_pin);
+    delay(10);
+    }
+
+  for (int i = 0; i< data_num; i++)
+  { 
+    x = 0;
+    // Moving Average
+    if (i<l_point_low)
+      {for(int k=0; k<i; k++)
+        {x += data[i-k];
+          }
+        }
+    else
+    {for(int j=0; j<l_point_low; j++)
+      {
+        x += data[i-j];
+        }
+      }
+      
+     Serial.print(data[i]);
+     Serial.print(',');
+     Serial.println(x/8);
+     }
+}
+```
+
+
+#### Arduino Code for ECG Data
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
@@ -202,7 +251,50 @@ If we take a first order difference of the signal in _Fig.1_ we get back a zero 
 
 From the magnitude response we can confirm that a Derivative Filter (First Order Difference) is a high pass filter.
 
-#### Arduino Code
+#### Arduino Code for live PPG Data
+```cpp
+int data_num = 1000;
+float arr[1000];
+float y = 0;
+int analog_pin = A0;
+int l_point = 8;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+   for(int i=0; i<data_num; i++)
+  {
+    arr[data_num - 1 - i] = analogRead(analog_pin);
+    delay(10);
+    }
+  
+  for (int i = 0; i< data_num; i++)
+  { 
+    y = 0;
+
+     // First Order Difference
+     if (i == 0)
+     {
+      y = 0;
+      }
+      else
+      {
+        y = arr[i] - arr[i-1];
+        }
+
+     Serial.print(arr[i]);
+     Serial.print(',');
+     Serial.println(y);
+     }
+}
+```
+
+#### Arduino Code for ECG Data
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
@@ -298,7 +390,50 @@ If we take a first order difference of the signal in _Fig.1_ we get back a zero 
 
 From the magnitude response we can confirm that a Derivative Filter (Three Point Central Difference) is a band pass filter.
 
-#### Arduino Code
+#### Arduino Code for live PPG Data
+```cpp
+int data_num = 1000;
+float arr[1000];
+float z = 0;
+int analog_pin = A0;
+int l_point = 8;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+   for(int i=0; i<data_num; i++)
+  {
+    arr[data_num - 1 - i] = analogRead(analog_pin);
+    delay(10);
+    }
+
+     for (int i = 0; i< data_num; i++)
+    { 
+      z = 0;
+
+      // Second Order Difference
+        if (i < 2)
+      {
+          z = arr[i]; 
+      }
+        else
+        {
+         z = arr[i] - arr[i-2];
+        }
+
+     Serial.print(arr[i]);
+     Serial.print(',');
+     Serial.print(z);
+     }
+}
+```
+
+#### Arduino Code for ECG Data
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
@@ -360,7 +495,53 @@ _Baseline Drift_ can be obtained by using an L point Moving Average Filter, wher
 
 Another method to obtain the _NFS_ is first obtain the _BD_ and subtract the _BD_ from the _Data_. Next we pass the _Data - BD_ to a moving average filter. This would reduce the high frequency components. However, even after this some, medium to high frequency components may remain. So we pass this _Data - BD_ through a Derivative Filter to obtain some of the remaining medium to high frequency components. This is done by taking a First Order Difference or a Three Point Central Difference depending on the application and the accuracy you desire. Then again subtract these medium to high frequency components from the _Data - BD_ to obtain the _NFS_.  
 
-#### Arduino Code for Obtaining the Baseline Drift
+#### Arduino Code for obtaining the baseline drift for live PPG Data
+```cpp
+int data_num = 1000;
+float data[1000];
+float x = 0;
+int analog_pin = A0;
+int l_point = int(0.8 * data_num);
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for(int i=0; i<data_num; i++)
+  {
+    data[data_num - 1 - i] = analogRead(analog_pin);
+    delay(10);
+    }
+
+  for (int i = 0; i< data_num; i++)
+  { 
+    x = 0;
+    // Moving Average
+    if (i<l_point)
+      {for(int k=0; k<i; k++)
+        {x += data[i-k];
+          }
+        }
+    else
+    {for(int j=0; j<l_point; j++)
+      {
+        x += data[i-j];
+        }
+      }
+      
+     Serial.print(data[i]);
+     Serial.print(',');
+     Serial.println(x/8);
+     }
+}
+```
+
+#### Arduino Code for obtaining the baseline drift for ECG Data
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
@@ -408,7 +589,80 @@ __Plots derived from the Arduino Code__
 
 <p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
 
-#### Arduino Code for obtaining the remaining medium to high frequency commponents of the Noise Signal 
+#### Arduino Code for obtaining the remaining medium to high frequency commponents of the Noise Signal for live PPG Data
+```cpp
+int data_num = 1000;
+float data[1000];
+float bd[1000];
+float x = 0;
+int analog_pin = A0;
+int l_point_low = 8;
+int l_point_high = int(0.8*data_num);
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for(int i=0; i<data_num; i++)
+  {
+    data[data_num - 1 - i] = analogRead(analog_pin);
+    delay(10);
+    }
+
+   for (int i = 0; i< data_num; i++)
+  { 
+    // Baseline Drift
+    if (i<l_point_high)
+      {for(int k=0; k<i; k++)
+        {bd[i] += data[i-k];
+          }
+         bd[i] = bd[i]/l_point_high;
+        }
+    else
+    {for(int j=0; j<l_point_high; j++)
+      {
+        bd[i] += data[i-j];
+        }
+        bd[i] = bd[i]/l_point_high;
+      }
+  }
+
+   for(int i =0; i<data_num; i++)
+   {
+    data[i] = data[i] - bd[i];
+    }
+
+  for (int i = 0; i< data_num; i++)
+  { 
+    x = 0;
+    // Moving Average
+    if (i<l_point_low)
+      {for(int k=0; k<i; k++)
+        {x += data[i-k];
+          }
+        }
+    else
+    {for(int j=0; j<l_point_low; j++)
+      {
+        x += data[i-j];
+        }
+      }
+      
+     Serial.print(data[i]);
+     Serial.print(',');
+     Serial.print(bd[i]);
+     Serial.print(',');
+     Serial.println(x/8);
+     }
+}
+```
+
+#### Arduino Code for obtaining the remaining medium to high frequency commponents of the Noise Signal for ECG Data
 
 ```cpp
 float arr[1000] = {-194.7293734,-228.7205774,-241.1012313, ... ,-144.4504403,-139.3705715,-155.2151228}
