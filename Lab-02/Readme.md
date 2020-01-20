@@ -38,7 +38,7 @@ The advantages that a PPG sensor has over an ECG machine is that it is small and
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Images/Arduino_PPG.jpg" width = 250/>
 </p>
 
-<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
+<p align = "left"> <i>To connect the PPG sensor to the Arduino Board, connect the signal pin to one of the analog pins on the board, connect the voltage pin to the 5V output pin on the board, and connect the grounds.</i></p>
 
 
 
