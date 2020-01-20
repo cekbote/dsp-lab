@@ -47,16 +47,9 @@ ECG (Electrocardiogram) Machine
 An ECG is a noninvasive, painless test with quick results. During an ECG, sensors (electrodes) that can detect the electrical activity of your heart are attached to your chest and sometimes your limbs. These sensors are usually left on for just a few minutes.
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Images/Working-principle-of-PPG-sensors.png" width=400/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Images/ECG.jpg" width=400/>
 </p>
 An ECG machine is more precise than a PPG sensor however it is more bulky and hence cant be used for portable applications. 
-
-<p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Images/Arduino_PPG.jpg" width = 250/>
-</p>
-
-<p align = "left"> <i>To connect the PPG sensor to the Arduino Board, connect the signal pin to one of the analog pins on the board, connect the voltage pin to the 5V output pin on the board, and connect the grounds. To read the signal from the analog pins, use the function: analogRead(pin_number).</i></p>
-
 
 ---
 
