@@ -40,6 +40,25 @@ The advantages that a PPG sensor has over an ECG machine is that it is small and
 
 <p align = "left"> <i>To connect the PPG sensor to the Arduino Board, connect the signal pin to one of the analog pins on the board, connect the voltage pin to the 5V output pin on the board, and connect the grounds. To read the signal from the analog pins, use the function: analogRead(pin_number).</i></p>
 
+---
+
+ECG (Electrocardiogram) Machine
+---
+A PPG (photoplethysmography) sensor is a high precision light sensor used to detect volume of blood flow to understand the fluctuation in heart rate.
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Images/Working-principle-of-PPG-sensors.png" width=400/>
+</p>
+
+A PPG  senosr makes uses of low-intensity infrared green (IR) light. When light travels through biological tissues it is absorbed by bones, skin pigments and both venous and arterial blood. Since light is more strongly absorbed by blood than the surrounding tissues, the changes in blood flow can be detected by PPG sensors as changes in the intensity of light. The voltage signal from the PPG sensor is proportional to the quantity of blood flowing through the blood vessels. Even small changes in blood volume can be detected using this sensor. 
+
+The advantages that a PPG sensor has over an ECG machine is that it is small and portable, wheras the disadvantage is that it is not as precise as an ECG machine. 
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Images/Arduino_PPG.jpg" width = 250/>
+</p>
+
+<p align = "left"> <i>To connect the PPG sensor to the Arduino Board, connect the signal pin to one of the analog pins on the board, connect the voltage pin to the 5V output pin on the board, and connect the grounds. To read the signal from the analog pins, use the function: analogRead(pin_number).</i></p>
 
 
 ---
