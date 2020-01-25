@@ -153,6 +153,15 @@ void loop() {
 ```
 
 
+__Plots derived from the Arduino Code from the live PPG Signal__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Gifs/ma.gif"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
+
+
 #### Arduino Code for ECG Data
 
 ```cpp
@@ -190,14 +199,6 @@ void loop() {
 }
 ```
 
-__Plots derived from the Arduino Code from the live PPG Signal__
-
-<p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Gifs/ma.gif"/>
-</p>
-
-<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
-
 __Plots derived from the Arduino Code from the ECG Signals__
 
 <p float="left" align = "center">
@@ -205,7 +206,7 @@ __Plots derived from the Arduino Code from the ECG Signals__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Gifs/119ma.gif" width = 400/>
 </p>
 
-<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
+<p align = "center"> <i>The plot on the left is for ECG Signal and the plot on the right is for ECG Signal 119. The Blue colour indicates the Original Signal and Red colour indicates the Processed Signalc</i></p>
 
 ----
 
