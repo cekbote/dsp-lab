@@ -190,10 +190,19 @@ void loop() {
 }
 ```
 
-__Plots derived from the Arduino Code__
+__Plots derived from the Arduino Code from the live PPG Signal__
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Gifs/ma.gif"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Gifs/ma.gif"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
+
+__Plots derived from the Arduino Code from the ECG Signals__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Gifs/103ma.gif" width = 400/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-02/Gifs/119ma.gif" width = 400/>
 </p>
 
 <p align = "center"> <i>Blue colour indicates the Original Signal and Red colour indicates the Processed Signal</i></p>
