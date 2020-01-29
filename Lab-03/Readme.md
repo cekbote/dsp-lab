@@ -64,6 +64,7 @@ The intuition provided above for an infinite length signal holds true even for a
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Autocorr.PNG" width="480"/>
 </p>
 <p align = "center"> <i>Autocorelation of a sine wave.</i></p>
+
 ---
 
 #### Arduino code for PPG Signal
