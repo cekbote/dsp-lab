@@ -47,10 +47,10 @@ __Properties of the autocorelation function:__
 ---
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_1.PNG" width="280"/>
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_1.PNG" width="280" /> 
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_1.PNG" width="280" />
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_1.PNG" width="280" />
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_1.PNG" width="212"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_2.PNG" width="212" /> 
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_3.PNG" width="212" />
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_4.PNG" width="212" />
 </p>
 
 
