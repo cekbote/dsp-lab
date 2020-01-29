@@ -41,7 +41,7 @@ __Properties of the autocorelation function:__
 <p align = "center" ><a href="https://www.codecogs.com/eqnedit.php?latex=R_{xx}[0]&space;=&space;\sum_{m&space;=&space;-\infty}^{\infty}x[m]x[m]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?R_{xx}[0]&space;=&space;\sum_{m&space;=&space;-\infty}^{\infty}x[m]x[m]" title="R_{xx}[0] = \sum_{m = -\infty}^{\infty}x[m]x[m]" /></a></p>
 
 3. If the data itself has a period of _T_, then even the autocorelation of the data has a period of _T_. 
----
+
 
 #### Intuition for why the autocorelation provides the time period
 ---
