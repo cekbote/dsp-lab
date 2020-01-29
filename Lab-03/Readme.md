@@ -53,5 +53,10 @@ __Properties of the autocorelation function:__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Sin_4.PNG" width="212" />
 </p>
 
+&nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.4_
+
+The figures represent two different infinte length sine waves shifted by an integer multiple of _pi/2_, where the integer increases on moving to the right. From _Fig.1_ we can observe that the two signals are exactly in phase, hence we get a maximum value. In _Fig.2_ the signals are at a phase difference of _pi/2_. Hence the multiplication of these two signals would yeild a value of zero. In _Fig.3._ the signals are at a phase differene of _pi_ which is totally out of phase and the multiplication of these two signals would yeild a local minima. In _Fig.3._ the phase difference between the signals is _3*pi/2._ the multiplication of these two signals would yeild a value of zero. Increasing the phase further would lead to the same signal in _Fig.1_. Hence we have intuitively proved property 3.
+
+The intuition provided above for an infinite length signal holds true even for a finite duration signal. However it can be observed that an autocorelation function is in increasing function when its computed for function values less than 0, and decreasing for function values greater than 0. This can be attributed to the fact that the number of data points are finite and computing the autocorelation function can only be done by padding zeros at the ends of the signal. Once this padded signal is corelated with itself there will be a time where only zeros values are being multiplied with each other. Hence, we can see that due a dearth of signal values present throughout the 
 
 
