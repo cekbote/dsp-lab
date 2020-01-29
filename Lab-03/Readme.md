@@ -60,4 +60,7 @@ The figures represent two different infinte length sine waves shifted by an inte
 The intuition provided above for an infinite length signal holds true even for a finite duration signal. However it can be observed that an autocorelation function is in increasing function when its computed for function values less than 0, and decreasing for function values greater than 0. This can be attributed to the fact that the number of data points are finite and computing the autocorelation function can only be done by padding zeros at the ends of the signal. Once this padded signal is corelated with itself there will be a time where only zeros values are being multiplied with each other. Hence, we can see that due only a limited number of signal points being present, we obtain that particular shape of the autocorelation function.
 
 
-
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Autocorr.PNG" width="480"/>
+</p>
+<p align = "center"> <i>Autocorelation of a sine wave.</i></p>
