@@ -55,12 +55,171 @@ __Properties of the autocorelation function:__
 
 &nbsp; &nbsp; &nbsp; _Fig.1_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Fig.2_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.3_ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  _Fig.4_
 
-The figures represent two different infinte length sine waves shifted by an integer multiple of _pi/2_, where the integer increases on moving to the right. From _Fig.1_ we can observe that the two signals are exactly in phase, hence we get a maximum value. In _Fig.2_ the signals are at a phase difference of _pi/2_. Hence the multiplication of these two signals would yeild a value of zero. In _Fig.3_ the signals are at a phase differene of _pi_ which is totally out of phase and the multiplication of these two signals would yeild a local minima. In _Fig.3._ the phase difference between the signals is _3*pi/2._ the multiplication of these two signals would yeild a value of zero. Increasing the phase further would lead to the same signal in _Fig.1_. Hence we have intuitively proved property 3.
+The figures represent two different infinte length sine waves shifted by an integer multiple of _pi/2_, where the integer increases on moving to the right. From _Fig.1_ we can observe that the two signals are exactly in phase, hence we get a maximum value. In _Fig.2_ the signals are at a phase difference of _pi/2_. Hence the multiplication of these two signals would yeild a value of zero. In _Fig.3_ the signals are at a phase differene of _pi_ which is totally out of phase and the multiplication of these two signals would yeild a local minima. In _Fig.3._ the phase difference between the signals is _3*pi/2._ the multiplication of these two signals would yeild a value of zero. Increasing the phase further would lead to the same signal in _Fig.1_. Hence we have intuitively proved property 3. Hence we can see that the autocorelation is periodic if the signal it operates on is periodic. 
 
-The intuition provided above for an infinite length signal holds true even for a finite duration signal. However it can be observed that an autocorelation function is in increasing function when its computed for function values less than 0, and decreasing for function values greater than 0. This can be attributed to the fact that the number of data points are finite and computing the autocorelation function can only be done by padding zeros at the ends of the signal. Once this padded signal is corelated with itself there will be a time where only zeros values are being multiplied with each other. Hence, we can see that due only a limited number of signal points being present, we obtain that particular shape of the autocorelation function.
+The intuition provided above for an infinite length signal holds true even for a finite duration signal. However it can be observed that an autocorelation function is in increasing function when its computed for function values less than 0, and decreasing for function values greater than 0. This can be attributed to the fact that the number of data points are finite and computing the autocorelation function can only be done by padding zeros at the ends of the signal. Once this padded signal is corelated with itself there will be a time where only zeros values are being multiplied with each other. Hence, we can see that due only a limited number of signal points being present, we obtain that particular shape of the autocorelation function. 
 
 
 <p float="left" align = "center">
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Autocorr.PNG" width="480"/>
 </p>
 <p align = "center"> <i>Autocorelation of a sine wave.</i></p>
+
+#### Arduino code for PPG Signal
+
+We take a window of 500 samples and calculate the autocorelation for these 500 samples, before passing the data through a low pass (moving average) filter and then we also pass the data through a low pass (moving average) filter. This is done to understand how the presence of high frequency components affects the pulse rate or pitch period calculation. We calculate the time period by checking the sample at which the autocorlation reaches its 2nd maxima from the origin (the first one is at the origin iself). To get this 2nd maxima, we can find out the maxima in the data present after the first zero crossing. To find out the zero crossing, we have to make the signal zero mean. Another method is to find the maxima in the data present after after the global minima. (Please note that we are only considering an autocorelation function computed for _t>0_ to maintain causality. 
+
+__CODE__
+```cpp
+float data[2000] = {-148.6621707,-248.3187771,-267.1305467, ...}
+float test_data[500];
+float working_data[1000];
+float average = 0;
+float average_1 = 0;
+float x =0;
+float max_val = 0;
+float pre_filtered_zero = 0;
+float pre_filter_maxima =0;
+float post_filtered_zero =0;
+float post_filter_maxima =0;
+float auto_corr_pre_moving_average[4][500];
+float auto_corr_post_moving_average[4][500];
+
+void setup() 
+{
+    Serial.begin(9600);
+}
+
+void loop() 
+{
+  for(int k = 0; k<4; k++)
+  {
+    average = 0;
+    average_1 = 0; 
+    
+    for(int p = 500*k; p < 500*(k+1); p++)
+    {
+      test_data[p - 500*k] = data[p];
+      working_data[p - 500*k] = test_data[p - 500*k];
+      average_1 += test_data[p - 500*k];   
+    }
+
+   // NON FILTERED 
+   // Zero Mean
+    for(int p =0; p<500; p++)
+    {
+      working_data[p] -= (average_1/500); 
+    } 
+
+    // Autocorr
+    for(int i = 0; i < 500; i++)
+    {
+    x = 0;
+    for(int j = i; j < 500; j++)
+    {
+      x += working_data[j]*working_data[j-i];
+      auto_corr_pre_moving_average[k][i] = x; 
+     }
+    }
+
+    // Zero Crossing
+    pre_filtered_zero = 0;
+    for(int i =0; i<500; i++)
+    {
+      if ((auto_corr_pre_moving_average[k][i] * auto_corr_pre_moving_average[k][i+1]) <0)
+      {
+        pre_filtered_zero = i+1;
+        break;}
+      }
+    
+    // 2nd Maxima
+    max_val = 0;
+    for(int i=pre_filtered_zero; i<500; i++)
+    {
+      if(max_val <auto_corr_pre_moving_average[k][i])
+      {
+        max_val = auto_corr_pre_moving_average[k][i];
+        pre_filter_maxima = i;
+       }
+     }
+
+    
+    // FILTERED
+    // Moving Average
+    for (int i = 0; i< 500; i++)
+    { 
+    x = 0;
+    if (i<8)
+      {for(int k=0; k<i; k++)
+        {x += test_data[i-k]; 
+          }
+        }
+    else
+    {for(int j=0; j<8; j++)
+      {
+        x += test_data[i-j];
+        }
+      }
+    working_data[i] = x/8;
+    average+= working_data[i];
+    }
+    
+    // Zero Mean
+    for(int p =0; p<500; p++)
+    {
+      working_data[p] -= (average/500); 
+    }
+
+    // Autocorr
+    for(int i = 0; i < 500; i++)
+    {
+    x = 0;
+    for(int j = i; j < 500; j++)
+    {
+      x += working_data[j]*working_data[j-i];
+     }
+     auto_corr_post_moving_average[k][i] = x;
+     }
+
+    // Zero Crossing
+    post_filtered_zero = 0;
+    for(int i =0; i<500; i++)
+    {
+      if ((auto_corr_post_moving_average[k][i] * auto_corr_post_moving_average[k][i+1]) <0)
+      {
+        post_filtered_zero = i+1;
+        break;}
+      }
+    
+    // 2nd Maxima
+    max_val = 0;
+    for(int i=post_filtered_zero; i<500; i++)
+    {
+      if(max_val <auto_corr_post_moving_average[k][i])
+      {
+        max_val = auto_corr_post_moving_average[k][i];
+        post_filter_maxima = i;
+       }
+     }
+
+    // Printing
+    for (int i =0; i< 500; i++)
+    {
+     Serial.print(k);
+     Serial.print(',');
+     Serial.print(auto_corr_pre_moving_average[k][i]/auto_corr_pre_moving_average[k][0]);
+     Serial.print(',');
+     Serial.print(auto_corr_post_moving_average[k][i]/auto_corr_post_moving_average[k][0]);
+     Serial.print(',');
+     Serial.print(pre_filter_maxima/100.0);
+     Serial.print(',');
+     Serial.print(post_filter_maxima/100.0);
+     Serial.print(',');
+     Serial.print(60/(pre_filter_maxima/100.0));
+     Serial.print(',');
+     Serial.println(60/(post_filter_maxima/100.0)); 
+     }   
+  }
+}
+
+```
