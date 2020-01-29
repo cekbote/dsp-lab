@@ -71,9 +71,11 @@ The intuition provided above for an infinite length signal holds true even for a
 We take a window of 500 samples and calculate the autocorelation for these 500 samples, before passing the data through a low pass (moving average) filter and then we also pass the data through a low pass (moving average) filter. This is done to understand how the presence of high frequency components affects the pulse rate or pitch period calculation. We calculate the time period by checking the sample at which the autocorlation reaches its 2nd maxima from the origin (the first one is at the origin iself). To get this 2nd maxima, we can find out the maxima in the data present after the first zero crossing. To find out the zero crossing, we have to make the signal zero mean. Another method is to find the maxima in the data present after after the global minima. (Please note that we are only considering an autocorelation function computed for _t>0_ to maintain causality.) 
 
 Time Period (TP) is calculated as: (Index number of data point of 2nd maxima + 1) * Fs 
+
 Where Fs is the sampling frequency and the assumption is that the index number starts from 0. 
 
 Pulse Rate (PR) is calculated as: 60/ TP
+
 This is in beats per minute.
 
 __Code__
