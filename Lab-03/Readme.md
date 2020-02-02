@@ -429,7 +429,7 @@ __Plots derived from the Arduino Code__
 
 <p align = "center"> <i>Blue indicates the autocorelation of the unfiltered signal and red indicates the autocorelation of the filtered signal</i></p>
 
-# Frequency Values
+__Frequency Values__
 
 | Fundamental Frequency (in Hz)     | 
 | ----------- | 
