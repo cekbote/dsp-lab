@@ -242,6 +242,16 @@ __Plots derived from the Arduino Code__
 
 <p align = "center"> <i>Blue indicates the autocorelation of the unfiltered signal and red indicates the autocorelation of the filtered signal</i></p>
 
+__Frequency Values__
+
+| Non - Filtered ppg Frequency  (in Hz)     |  Filtered ppg Frequency  (in Hz)   |  Error | 
+| ----------- | ----------- | ----------- |
+| 67.67      | 67.67       |  0% |
+| 61.18   | 61.18       |  0% |
+| 65.93   | 65.22        | 0.71% |
+| 61.22  | 61.22        | 0%|
+
+
 ---
 
 #### Arduino code for the speech signal
