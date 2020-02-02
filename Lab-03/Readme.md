@@ -233,6 +233,17 @@ void loop()
 }
 
 ```
+
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/PPG_Autocorr.PNG"/>
+</p>
+
+<p align = "center"> <i>Blue colour indicates the autocorelation of the unfiltered signal and red colour indicates the autocorelation of the filtered signal</i></p>
+
+----
+
 ---
 
 #### Arduino code for the speech signal
