@@ -240,9 +240,7 @@ __Plots derived from the Arduino Code__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/PPG_Autocorr.PNG"/>
 </p>
 
-<p align = "center"> <i>Blue colour indicates the autocorelation of the unfiltered signal and red colour indicates the autocorelation of the filtered signal</i></p>
-
-----
+<p align = "center"> <i>Blue indicates the autocorelation of the unfiltered signal and red indicates the autocorelation of the filtered signal</i></p>
 
 ---
 
@@ -412,4 +410,12 @@ void loop()
 }
 
 ```
+
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/Speech_Signal_Autocorr.PNG"/>
+</p>
+
+<p align = "center"> <i>Blue indicates the autocorelation of the unfiltered signal and red indicates the autocorelation of the filtered signal</i></p>
 
