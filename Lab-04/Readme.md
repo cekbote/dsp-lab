@@ -1,10 +1,11 @@
-Lab 3
+Lab 4
 ===========
 
 **Aim:**
 
-1. To compute the pulse rate (PR) from a PPG signal.
-2. To compute the pitch period of a speech signal. 
+1. To find the magnitude spectrum of a PPG signal using DFT.
+2. To compute the pulse rate of the PPG signal using DFT/
+3. To find out the error in
 
 By:
 
