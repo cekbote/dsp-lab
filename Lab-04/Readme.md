@@ -4,12 +4,14 @@ Lab 4
 **Aim:**
 
 1. To find the magnitude spectrum of a PPG signal using DFT.
-2. To compute the pulse rate of the PPG signal using DFT/
-3. To find out the error in
+2. To compute the pulse rate of the PPG signal using DFT.
+3. To compute the pulse rate of the PPG signal using an autocorrelation function.
+4. To find out the error using both the methods.
 
-By:
+Via
 
-1. Using an Autocorelation function. 
+1. The Arduino Platform
+2. MATLAB
 
 
 **Data and Code Links**
@@ -17,6 +19,19 @@ By:
 1. The Lab Sheet for the experiment can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Lab%20Sheet/DSP-Experiment01.pdf)
 2. The Arduino Codes can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-03/Code)
 ---
+
+Discrete Fourier Transform
+---
+
+The mathematical expression for calculating the individual frequency components of a signal (DFT) is as follows 
+
+<p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=X[k]&space;=&space;\sum&space;_{n&space;=&space;0}^{N-1}x[n]e^{\frac{-2\pi&space;kn}{N}}\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?X[k]&space;=&space;\sum&space;_{n&space;=&space;0}^{N-1}x[n]e^{\frac{-2\pi&space;kn}{N}}\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" title="X[k] = \sum _{n = 0}^{N-1}x[n]e^{\frac{-2\pi kn}{N}}\;\: \forall \;\:k \:\varepsilon \: [0, N-1]" /></a></p>
+
+The inverse discrete fourier transform (IDFT) is computed as follows:
+
+
+
+
 
 Autocorelation Function
 ---
