@@ -85,11 +85,166 @@ The intuition provided above for an infinite length signal holds true even for a
 
 ---
 
-#### Arduino code for PPG Signal
+#### Arduino code for DFT of PPG Signal
+
+We take all the samples of the signal and pass them through a low pass (moving average) filter to reduce the high frequency noise in the signal. Next we compute the DFT matrix by spliting the caluclations of the real and imaginary part as computing the Euler's reprenetation of complex numbers is difficult. Next, the real and imaginary part of the DFT is obtained by multipying the real and imaginary parts of the DFT Matrix with the data in the time domain. Then, we obtain the magnitude spectra by squaring and adding the real and imaginary parts of the DFT. After that we find out the first index from the origin where we obtain the maximum magnitude of the magnitude spectra which in turn gives you the max frequency component. 
+
+__Pulse Rate (PR) is calculated as:__ 60 * Fs * (first index) / Length of signal
+
+This is in beats per minute. 
+
+__Arduino Code__
+```cpp
+float data[75] = {-87.17307638, -109.5495333, 11.00037444, ...}; 
+float p = 0;
+float x[75];
+float N = 75;
+double w_real[75][75];
+double w_imag[75][75];
+double X_real[75];
+double X_imag[75];
+double X_mag_resp[75];
+float Pi = 3.14159;
+float inex;
+float peak;
+float PR = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+
+}
+
+void loop() 
+{
+
+  // Moving Average
+  for (int i = 0; i< 75; i++)
+  { 
+    p = 0;
+    if (i<8)
+      {for(int k=0; k<i; k++)
+        {p += data[i-k];
+          }
+        }
+    else
+    {for(int j=0; j<8; j++)
+      {
+        p += data[i-j];
+        }
+      }
+    x[i] = p;
+  }
+
+  ///DFT Computation
+  for (int k = 0; k < N; k++)
+  { 
+    X_real[k] = 0;
+    X_imag[k] = 0;
+    X_mag_resp[k] = 0;
+    
+    for(int n = 0; n < N; n++)
+    {
+      w_real[k][n] = 0;
+      w_imag[k][n] = 0;
+      w_real[k][n] = cos(2 * Pi * k * n / N);
+      w_imag[k][n] = -sin(2 * Pi * k * n / N);
+      X_real[k] += x[n] * w_real[k][n];
+      X_imag[k] += x[n] * w_imag[k][n];
+      X_mag_resp[k] += sqrt(X_real[k] * X_real[k] + X_imag[k] * X_imag[k]);
+    }
+  }
+
+  //Plotting the Magnitude Response
+//  for (int n = 0; n < N; n++)
+//  {
+//    Serial.println(X_mag_resp[n]);
+//  }
+
+  //Getting the maximum value
+  peak = 0;
+  inex = 0;
+ 
+  for (int n = 0; n < N; n++)
+  {
+    if (peak < X_mag_resp[n])
+    {
+      peak = X_mag_resp[n];
+      inex = n;
+    }
+   }
+
+  PR = 60 * (N  - inex) * 25 / N;
+  Serial.println(PR);
+```
+
+__MATLAB Code__
+```MATLAB
+clc;
+clear all;
+close all;
+
+data = load('Exp03_PPG_25hz_75samples.mat');
+data = data.x3;
+filter_window = 8;
+filtered_data = zeros(size(data));
+F = 25;
+
+% Moving Average
+for i = 1:size(data,2)
+    x = 0;
+    if i <= filter_window
+        x = sum(data(1:i));
+    else
+        x = sum(data(i-filter_window:i));
+    end
+    filtered_data(i) = x / filter_window;
+end
+
+% DFT and DFT Matrix
+dft = fft(filtered_data);
+dft_matrix = dftmtx(size(filtered_data,2));
+[~, index] = max(abs(dft));
+
+
+figure;
+plot(abs(dft));
+xlabel('Frequency');
+ylabel('Magnitude');
+title('Magnitude Response');
+
+% Pulse Rate
+display(60 * index * F/size(filtered_data,2));
+
+
+% Autocorrelation
+corr = xcorr(filtered_data - mean(filtered_data));
+corr = corr(76:end);
+figure;
+plot(corr);
+xlabel('Time');
+ylabel('Magnitude');
+title('Autocorrelation');
+
+% Zero Crossing 
+zero_crossing_index = 0;
+for i=1:size(corr, 2)
+    if corr(i+1) * corr(i) < 0
+        zero_crossing_index = i + 1;
+        break
+    end
+end
+
+% Pulse Rate using Autocorrelation
+[~, index_corr] = max(corr(zero_crossing_index:end));
+index_corr = zero_crossing_index + index_corr;
+display(60/(index_corr/25));
+```
+
 
 We take a window of 500 samples and calculate the autocorelation for these 500 samples, before passing the data through a low pass (moving average) filter and then we also pass the data through a low pass (moving average) filter. This is done to understand how the presence of high frequency components affects the pulse rate or pitch period calculation. We calculate the time period by checking the sample at which the autocorlation reaches its 2nd maxima from the origin (the first one is at the origin iself). To get this 2nd maxima, we can find out the maxima in the data present after the first zero crossing. To find out the zero crossing, we have to make the signal zero mean. Another method is to find the maxima in the data present after after the global minima. (Please note that we are only considering an autocorelation function computed for _t>0_ to maintain causality.) 
 
-__Time Period (TP) is calculated as:__ (Index number of data point of 2nd maxima + 1) * Fs 
+__Time Period (TP) is calculated as:__ (Index number of data point of 2nd maxima + 1) * 1/Fs 
 
 Where Fs is the sampling frequency and the assumption is that the index number starts from 0. 
 
