@@ -25,7 +25,7 @@ Discrete Fourier Transform
 
 The mathematical expression for calculating the individual frequency components of a signal (DFT) is as follows 
 
-<p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=X[k]&space;=&space;\sum&space;_{n&space;=&space;0}^{N-1}x[n]e^{\frac{-2\pi&space;ikn}{N}}\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?X[k]&space;=&space;\sum&space;_{n&space;=&space;0}^{N-1}x[n]e^{\frac{-2\pi&space;kn}{N}}\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" title="X[k] = \sum _{n = 0}^{N-1}x[n]e^{\frac{-2\pi ikn}{N}}\;\: \forall \;\:k \:\varepsilon \: [0, N-1]" /></a></p>
+<p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=X[k]&space;=&space;\sum&space;_{n&space;=&space;0}^{N-1}x[n]e^{\frac{-2\pi&space;ikn}{N}}\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?X[k]&space;=&space;\sum&space;_{n&space;=&space;0}^{N-1}x[n]e^{\frac{-2\pi&space;ikn}{N}}\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" title="X[k] = \sum _{n = 0}^{N-1}x[n]e^{\frac{-2\pi ikn}{N}}\;\: \forall \;\:k \:\varepsilon \: [0, N-1]" /></a></p>
 
 The inverse discrete fourier transform (IDFT) is computed as follows:
 
