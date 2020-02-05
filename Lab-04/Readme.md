@@ -29,10 +29,11 @@ The mathematical expression for calculating the individual frequency components 
 
 The inverse discrete fourier transform (IDFT) is computed as follows:
 
+<p align = "center"><<a href="https://www.codecogs.com/eqnedit.php?latex=x[n]&space;=&space;\frac{\sum&space;_{k&space;=&space;0}^{N-1}x[k]e^{\frac{2\pi&space;ikn}{N}}}{N}&space;\;\:&space;\forall&space;\;\:n&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x[n]&space;=&space;\frac{\sum&space;_{k&space;=&space;0}^{N-1}x[k]e^{\frac{2\pi&space;ikn}{N}}}{N}&space;\;\:&space;\forall&space;\;\:n&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" title="x[n] = \frac{\sum _{k = 0}^{N-1}x[k]e^{\frac{2\pi ikn}{N}}}{N} \;\: \forall \;\:n \:\varepsilon \: [0, N-1]" /></a></p>
 
-<p align = "center"><a href="https://www.codecogs.com/eqnedit.php?latex=x[n]&space;=&space;\frac{\sum&space;_{k&space;=&space;0}^{N-1}x[k]e^{\frac{2\pi&space;ikn}{N}}}{N}&space;\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x[n]&space;=&space;\frac{\sum&space;_{k&space;=&space;0}^{N-1}x[k]e^{\frac{2\pi&space;ikn}{N}}}{N}&space;\;\:&space;\forall&space;\;\:k&space;\:\varepsilon&space;\:&space;[0,&space;N-1]" title="x[n] = \frac{\sum _{k = 0}^{N-1}x[k]e^{\frac{2\pi ikn}{N}}}{N} \;\: \forall \;\:k \:\varepsilon \: [0, N-1]" /></a></p>
+Note that both x[n] and X[k] are periodic functions. This can be intuitively thought about by the following thought experiment:
 
-
+Suppose you have a discrete time finite length signal. If you take the discrete time fourier transform of that, you get a periodic continuous function in the frequency domain (function repeats with a period of 2$\Pi$). Now, to process this frequency domain component you would have to sample it in discrete intervals in order to store it in the memmory of an electronic device. Hence we would be multiplying the function in the frequency domain with an impulse train, where the interval between pulses is determined by how much you want to sample. Now the inverse fourier transform of an impulse train is an impulse train, however, this would be convolved with the original finite length signal. Hence, due to this convolution, even the original signal is transformed into a discrete time infinite length periodic function. 
 
 Autocorelation Function
 ---
