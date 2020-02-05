@@ -240,9 +240,11 @@ end
 index_corr = zero_crossing_index + index_corr;
 display(60/(index_corr/25));
 ```
+---
 
+#### Arduino code for Autocorrelation of the PPG Signal
 
-We take a window of 500 samples and calculate the autocorelation for these 500 samples, before passing the data through a low pass (moving average) filter and then we also pass the data through a low pass (moving average) filter. This is done to understand how the presence of high frequency components affects the pulse rate or pitch period calculation. We calculate the time period by checking the sample at which the autocorlation reaches its 2nd maxima from the origin (the first one is at the origin iself). To get this 2nd maxima, we can find out the maxima in the data present after the first zero crossing. To find out the zero crossing, we have to make the signal zero mean. Another method is to find the maxima in the data present after after the global minima. (Please note that we are only considering an autocorelation function computed for _t>0_ to maintain causality.) 
+We take a window of 75 samples and calculate the autocorelation for these 75 samples, before passing the data through a low pass (moving average) filter and then we also pass the data through a low pass (moving average) filter. This is done to understand how the presence of high frequency components affects the pulse rate or pitch period calculation. We calculate the time period by checking the sample at which the autocorlation reaches its 2nd maxima from the origin (the first one is at the origin iself). To get this 2nd maxima, we can find out the maxima in the data present after the first zero crossing. To find out the zero crossing, we have to make the signal zero mean. Another method is to find the maxima in the data present after after the global minima. (Please note that we are only considering an autocorelation function computed for _t>0_ to maintain causality.) 
 
 __Time Period (TP) is calculated as:__ (Index number of data point of 2nd maxima + 1) * 1/Fs 
 
@@ -254,9 +256,9 @@ This is in beats per minute.
 
 __Code__
 ```cpp
-float data[2000] = {-148.6621707,-248.3187771,-267.1305467, ...}
-float test_data[500];
-float working_data[1000];
+float data[75] = {-87.17307638, -109.5495333, 11.00037444, ...}; 
+float test_data[75];
+float working_data[75];
 float average = 0;
 float average_1 = 0;
 float x =0;
@@ -265,8 +267,8 @@ float pre_filtered_zero = 0;
 float pre_filter_maxima =0;
 float post_filtered_zero =0;
 float post_filter_maxima =0;
-float auto_corr_pre_moving_average[4][500];
-float auto_corr_post_moving_average[4][500];
+float auto_corr_pre_moving_average[4][75];
+float auto_corr_post_moving_average[4][75];
 
 void setup() 
 {
@@ -275,72 +277,27 @@ void setup()
 
 void loop() 
 {
-  for(int k = 0; k<4; k++)
-  {
-    average = 0;
-    average_1 = 0; 
+    average_1 = 0;
     
-    for(int p = 500*k; p < 500*(k+1); p++)
+    for(int p = 0; p < 75; p++)
     {
-      test_data[p - 500*k] = data[p];
-      working_data[p - 500*k] = test_data[p - 500*k];
-      average_1 += test_data[p - 500*k];   
+      average_1 += data[p];   
     }
-
-   // NON FILTERED 
-   // Zero Mean
-    for(int p =0; p<500; p++)
-    {
-      working_data[p] -= (average_1/500); 
-    } 
-
-    // Autocorr
-    for(int i = 0; i < 500; i++)
-    {
-    x = 0;
-    for(int j = i; j < 500; j++)
-    {
-      x += working_data[j]*working_data[j-i];
-      auto_corr_pre_moving_average[k][i] = x; 
-     }
-    }
-
-    // Zero Crossing
-    pre_filtered_zero = 0;
-    for(int i =0; i<500; i++)
-    {
-      if ((auto_corr_pre_moving_average[k][i] * auto_corr_pre_moving_average[k][i+1]) <0)
-      {
-        pre_filtered_zero = i+1;
-        break;}
-      }
-    
-    // 2nd Maxima
-    max_val = 0;
-    for(int i=pre_filtered_zero; i<500; i++)
-    {
-      if(max_val <auto_corr_pre_moving_average[k][i])
-      {
-        max_val = auto_corr_pre_moving_average[k][i];
-        pre_filter_maxima = i;
-       }
-     }
-
     
     // FILTERED
     // Moving Average
-    for (int i = 0; i< 500; i++)
+    for (int i = 0; i< 75; i++)
     { 
     x = 0;
     if (i<8)
       {for(int k=0; k<i; k++)
-        {x += test_data[i-k]; 
+        {x += data[i-k]; 
           }
         }
     else
     {for(int j=0; j<8; j++)
       {
-        x += test_data[i-j];
+        x += data[i-j];
         }
       }
     working_data[i] = x/8;
@@ -348,61 +305,54 @@ void loop()
     }
     
     // Zero Mean
-    for(int p =0; p<500; p++)
+    for(int p =0; p<75; p++)
     {
-      working_data[p] -= (average/500); 
+      working_data[p] -= (average/75); 
     }
 
     // Autocorr
-    for(int i = 0; i < 500; i++)
+    for(int i = 0; i < 75; i++)
     {
     x = 0;
-    for(int j = i; j < 500; j++)
+    for(int j = i; j < 75; j++)
     {
       x += working_data[j]*working_data[j-i];
      }
-     auto_corr_post_moving_average[k][i] = x;
+     auto_corr_post_moving_average[0][i] = x;
      }
 
     // Zero Crossing
     post_filtered_zero = 0;
-    for(int i =0; i<500; i++)
+    for(int i =0; i<75; i++)
     {
-      if ((auto_corr_post_moving_average[k][i] * auto_corr_post_moving_average[k][i+1]) <0)
+      if ((auto_corr_post_moving_average[0][i] * auto_corr_post_moving_average[0][i+1]) <0)
       {
         post_filtered_zero = i+1;
         break;}
       }
     
+    
     // 2nd Maxima
     max_val = 0;
-    for(int i=post_filtered_zero; i<500; i++)
+    for(int i=post_filtered_zero; i<75; i++)
     {
-      if(max_val <auto_corr_post_moving_average[k][i])
+      if(max_val <auto_corr_post_moving_average[0][i])
       {
-        max_val = auto_corr_post_moving_average[k][i];
+        max_val = auto_corr_post_moving_average[0][i];
         post_filter_maxima = i;
        }
      }
 
     // Printing
-    for (int i =0; i< 500; i++)
+    for (int i =0; i< 75; i++)
     {
-     Serial.print(k);
+     Serial.print(auto_corr_post_moving_average[0][i]/auto_corr_post_moving_average[0][0]);
      Serial.print(',');
-     Serial.print(auto_corr_pre_moving_average[k][i]/auto_corr_pre_moving_average[k][0]);
+     Serial.print(post_filter_maxima/25.0);
      Serial.print(',');
-     Serial.print(auto_corr_post_moving_average[k][i]/auto_corr_post_moving_average[k][0]);
-     Serial.print(',');
-     Serial.print(pre_filter_maxima/100.0);
-     Serial.print(',');
-     Serial.print(post_filter_maxima/100.0);
-     Serial.print(',');
-     Serial.print(60/(pre_filter_maxima/100.0));
-     Serial.print(',');
-     Serial.println(60/(post_filter_maxima/100.0)); 
+     Serial.println(60/(post_filter_maxima/25.0)); 
      }   
-  }
+  
 }
 
 ```
