@@ -33,7 +33,8 @@ The inverse discrete fourier transform (IDFT) is computed as follows:
 
 Note that both x[n] and X[k] are periodic functions. This can be intuitively thought about by the following thought experiment:
 
-Suppose you have a discrete time finite length signal. If you take the discrete time fourier transform of that, you get a periodic continuous function in the frequency domain (function repeats with a period of 2$\Pi$). Now, to process this frequency domain component you would have to sample it in discrete intervals in order to store it in the memmory of an electronic device. Hence we would be multiplying the function in the frequency domain with an impulse train, where the interval between pulses is determined by how much you want to sample. Now the inverse fourier transform of an impulse train is an impulse train, however, this would be convolved with the original finite length signal. Hence, due to this convolution, even the original signal is transformed into a discrete time infinite length periodic function. 
+Suppose you have a discrete time finite length signal. If you take the discrete time fourier transform of that, you get a
+periodic continuous function in the frequency domain (function repeats with a period of _2pi_). Now, to process this frequency domain component you would have to sample it in discrete intervals in order to store it in the memmory of an electronic device. Hence we would be multiplying the function in the frequency domain with an impulse train, where the interval between pulses is determined by how much you want to sample. Now the inverse fourier transform of an impulse train is an impulse train, however, this would be convolved with the original finite length signal. Hence, due to this convolution, even the original signal is transformed into a discrete time infinite length periodic function. 
 
 Autocorelation Function
 ---
