@@ -381,7 +381,7 @@ __Plots derived from the MATLAB Code__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response.PNG" width="400" /> 
 </p>
 
-<p align = "center"> <i>Magnitude response of the DFT Spectrum.</i></p>
+<p align = "center"> <i>The plot on the left is the autorrelation of the original data. The plot on the right is the Magnitude Spectrum of the DFT of the signal.</i></p>
 
 
 
