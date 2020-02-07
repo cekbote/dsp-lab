@@ -306,7 +306,7 @@ void loop()
 __Plots derived from the Arduino Code__
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response%20DFT.PNG"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Arduino_Autocorrelation.PNG"/>
 </p>
 
 <p align = "center"> <i>Autocorrelation of the filtered PPG data.</i></p>
@@ -377,21 +377,21 @@ display(60/(index_corr/25));
 ```
 __Plots derived from the MATLAB Code__
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Autocorrelation.PNG" width="280"/>
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response.PNG" width="280" /> 
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Autocorrelation.PNG" width=400""/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response.PNG" width="400" /> 
 </p>
 
 <p align = "center"> <i>Magnitude response of the DFT Spectrum.</i></p>
 
 
 
-__Frequency Values__
+__Pulse Rate calculated by using both DFT as well as Autocorrelation__
 
 | Pulse rate in calculated using DFT  (in BPM)     |  Pulse rate calculated using Autocorrelation  (in BPM)   |  Error (%) | 
 | ----------- | ----------- | ----------- |
 | 80      | 68.1818      |  17.33 % |
 
-Hence through the experiment, we can conclude that if the sampling rate is very low (as it was in this experiment) we can see that computing PR using DFT is much worse than calculating PR using Autocorrelation. 
+Hence through the experiment, we can conclude that if the sampling rate is very low (as it was in this experiment) we can see that computing PR using DFT is much worse than calculating PR using Autocorrelation. (Note that the same value is obtained when you use write the code in MATLAB or the C variant used by the Arduino boards. 
 
 ---
 
