@@ -16,8 +16,7 @@ Via
 
 **Data and Code Links**
 
-1. The Lab Sheet for the experiment can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-01/Lab%20Sheet/DSP-Experiment01.pdf)
-2. The Arduino Codes can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-03/Code)
+1. The Arduino Codes can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-03/Code)
 ---
 
 Discrete Fourier Transform
@@ -177,6 +176,16 @@ void loop()
   PR = 60 * (N  - inex) * 25 / N;
   Serial.println(PR);
 ```
+
+
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Arduino_Autocorrelation.PNG"/>
+</p>
+
+<p align = "center"> <i>Blue indicates the autocorelation of the unfiltered signal and red indicates the autocorelation of the filtered signal</i></p>
+
 ---
 
 #### Arduino code for Autocorrelation of the PPG Signal
@@ -369,15 +378,6 @@ Hence through the experiment, we can conclude that if the sampling rate is very 
 
 ---
 
-
-
-__Plots derived from the Arduino Code__
-
-<p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-03/Images/PPG_Autocorr.PNG"/>
-</p>
-
-<p align = "center"> <i>Blue indicates the autocorelation of the unfiltered signal and red indicates the autocorelation of the filtered signal</i></p>
 
 
 
