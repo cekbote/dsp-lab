@@ -181,10 +181,10 @@ void loop()
 __Plots derived from the Arduino Code__
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Arduino_Autocorrelation.PNG"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response%20DFT.PNG"/>
 </p>
 
-<p align = "center"> <i>Blue indicates the autocorelation of the unfiltered signal and red indicates the autocorelation of the filtered signal</i></p>
+<p align = "center"> <i>Magnitude response of the DFT Spectrum.</i></p>
 
 ---
 
@@ -302,6 +302,14 @@ void loop()
 }
 
 ```
+
+__Plots derived from the Arduino Code__
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response%20DFT.PNG"/>
+</p>
+
+<p align = "center"> <i>Autocorrelation of the filtered PPG data.</i></p>
 ----
 
 
@@ -367,6 +375,15 @@ end
 index_corr = zero_crossing_index + index_corr;
 display(60/(index_corr/25));
 ```
+__Plots derived from the MATLAB Code__
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Autocorrelation.PNG" width="280"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response.PNG" width="280" /> 
+</p>
+
+<p align = "center"> <i>Magnitude response of the DFT Spectrum.</i></p>
+
+
 
 __Frequency Values__
 
