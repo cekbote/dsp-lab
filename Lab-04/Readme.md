@@ -38,7 +38,6 @@ periodic continuous function in the frequency domain (function repeats with a pe
 <p float="left" align = "center">
   <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/0e619f9540710747a4fe02c2959c31c1cec3828a" width="480"/>
 </p>
-<p align = "center"> <i>Autocorelation of a sine wave.</i></p>
 
 Autocorelation Function
 ---
