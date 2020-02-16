@@ -3,7 +3,7 @@ Lab 4
 
 **Aim:**
 
-1. To filter out the Repiratory Signal as well as the PPG Signal from a combination of them both.
+1. To filter out the Repiratory Signal as well as the PPG Signal from a combination of the both of them. 
 2. To find the respiration rate using the FFT. 
 
 Via
@@ -151,8 +151,6 @@ void loop()
         }
       }
 
-
-    
 
 //   Printing the Freq Plots
   for (int n = 0; n < N; n++)
