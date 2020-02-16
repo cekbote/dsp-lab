@@ -35,9 +35,9 @@ This can be recursively written as follows:
 
 #### Arduino code for FFT filteration of the PPG Signal
 
-We take all the samples of the signal and pass them through a low pass (moving average) filter to reduce the high frequency noise in the signal. Next we compute the DFT using the FFT algorithm. Once that is done we can filter out the repiratory signal as well as the PPG signal by removing the appropriate frequency components and then use the inverse FFT algorithm to get the seperate signals back. We also we 
+We take all the samples of the signal and pass them through a low pass (moving average) filter to reduce the high frequency noise in the signal. Next we compute the DFT using the FFT algorithm. Once that is done we can filter out the repiratory signal as well as the PPG signal by removing the appropriate frequency components and then use the inverse FFT algorithm to get the seperate signals back. We also find the dominant frequency in the respiratory signal by finding the index (m_index) corresponding to the maximum value of the different frequencies of the magnitude response. This dominant frequency is then converted into BPM.
 
-__Pulse Rate (PR) is calculated as:__ 60 * Fs * (first index) / Length of signal
+__Pulse Rate (PR) is calculated as:__ 60 * Fs * (m_index) / Length of signal
 
 This is in beats per minute. 
 
@@ -267,21 +267,15 @@ title('FFT of Respiration');
 ```
 __Plots derived from the MATLAB Code__
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Autocorrelation.PNG" width=400""/>
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response.PNG" width="400" /> 
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Plots_Matlab.jpg"/>
 </p>
-
-<p align = "center"> <i>The plot on the left is the autorrelation of the original data. The plot on the right is the Magnitude Spectrum of the DFT of the signal.</i></p>
-
-
 
 __Pulse Rate calculated by using both DFT as well as Autocorrelation__
 
-| Pulse rate in calculated using DFT  (in BPM)     |  Pulse rate calculated using Autocorrelation  (in BPM)   |  Error (%) | 
+| Pulse rate in calculated using Matlab  (in BPM)     |  Pulse rate calculated using Arduino  (in BPM)   |
 | ----------- | ----------- | ----------- |
-| 80      | 68.1818      |  17.33 % |
+| 16     | 25.6      |  17.33 % |
 
-Hence through the experiment, we can conclude that if the sampling rate is very low (as it was in this experiment) we can see that computing PR using DFT is much worse than calculating PR using Autocorrelation. (Note that the same value is obtained when you use write the code in MATLAB or the C variant used by the Arduino boards. 
 
 ---
 
