@@ -3,7 +3,7 @@ Lab 5
 
 **Aim:**
 
-1. To filter out the Repiratory Signal as well as the PPG Signal from a combination of the both of them. 
+1. To filter out the Repiratory Signal as well as the PPG Signal from a combination of the both of them using the FFT. 
 2. To find the respiration rate using the FFT. 
 
 Via
@@ -18,7 +18,7 @@ Via
 2. The Data can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-05/Data)
 ---
 
-Discrete Fourier Transform
+Discrete Fourier Transform (Using FFT)
 ---
 
 The mathematical expression for calculating the individual frequency components of a signal using the FFT algorithm is as follows:
