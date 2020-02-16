@@ -326,61 +326,67 @@ clc;
 clear all;
 close all;
 
-data = load('Exp03_PPG_25hz_75samples.mat');
-data = data.x3;
-filter_window = 8;
-filtered_data = zeros(size(data));
-F = 25;
+% Data
+data = load('ppgwithRespiration_10hz_30seconds.mat');
+data = data.xppg;
 
-% Moving Average
-for i = 1:size(data,2)
-    x = 0;
-    if i <= filter_window
-        x = sum(data(1:i));
-    else
-        x = sum(data(i-filter_window:i));
-    end
-    filtered_data(i) = x / filter_window;
-end
+% Properties about the Data
+Fs = 10;
+filter_start_index = 0.5 * size(data, 2) / Fs;
 
-% DFT and DFT Matrix
-dft = fft(filtered_data);
-dft_matrix = dftmtx(size(filtered_data,2));
-[~, index] = max(abs(dft));
+% Filtering
+fft_ = fft(data);
 
+resp_fft = fft_;
+resp_fft(filter_start_index + 1: size(fft_, 2) - filter_start_index) = 0;
+resp = ifft(resp_fft);
 
+ppg_fft = fft_ - resp_fft;
+ppg = ifft(ppg_fft);
+
+% Respiration rate
+[~, max_index] = max(abs(resp_fft(2: filter_start_index + 1)));
+display('The respiration rate is:');
+display(60 * (max_index * Fs / size(data, 2)));
+
+% Graphs
 figure;
-plot(abs(dft));
-xlabel('Frequency');
-ylabel('Magnitude');
-title('Magnitude Response');
 
-% Pulse Rate
-display(60 * index * F/size(filtered_data,2));
-
-
-% Autocorrelation
-corr = xcorr(filtered_data - mean(filtered_data));
-corr = corr(76:end);
-figure;
-plot(corr);
+subplot(6, 1, 1);
+plot(data);
 xlabel('Time');
 ylabel('Magnitude');
-title('Autocorrelation');
+title('Original Data');
 
-% Zero Crossing 
-zero_crossing_index = 0;
-for i=1:size(corr, 2)
-    if corr(i+1) * corr(i) < 0
-        zero_crossing_index = i + 1;
-        break
-    end
-end
+subplot(6, 1, 2);
+plot(abs(fft_));
+xlabel('Frequency');
+ylabel('Magnitude');
+title('FFT of Data');
 
-% Pulse Rate using Autocorrelation
-[~, index_corr] = max(corr(zero_crossing_index:end));
-index_corr = zero_crossing_index + index_corr;
-display(60/(index_corr/25));
+subplot(6, 1, 3);
+plot(abs(ppg));
+xlabel('Time');
+ylabel('Magnitude');
+title('PPG Data');
+
+subplot(6, 1, 4);
+plot(abs(ppg_fft));
+xlabel('Frequency');
+ylabel('Magnitude');
+title('FFT of PPG');
+
+subplot(6, 1, 5);
+plot(abs(resp));
+xlabel('Time');
+ylabel('Magnitude');
+title('Respiration');
+
+subplot(6, 1, 6);
+plot(abs(resp_fft));
+xlabel('Time');
+ylabel('Magnitude');
+title('FFT of Respiration');
 ```
 __Plots derived from the MATLAB Code__
 <p float="left" align = "center">
