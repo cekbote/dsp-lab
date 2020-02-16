@@ -35,7 +35,7 @@ This can be recursively written as follows:
 
 #### Arduino code for FFT filteration of the PPG Signal
 
-We take all the samples of the signal and pass them through a low pass (moving average) filter to reduce the high frequency noise in the signal. Next we compute the DFT using the FFT algorithm. Once that is done we can filter out the repiratory signal as well as the 
+We take all the samples of the signal and pass them through a low pass (moving average) filter to reduce the high frequency noise in the signal. Next we compute the DFT using the FFT algorithm. Once that is done we can filter out the repiratory signal as well as the PPG signal by removing the appropriate frequency components and then use the inverse FFT algorithm to get the seperate signals back. We also we 
 
 __Pulse Rate (PR) is calculated as:__ 60 * Fs * (first index) / Length of signal
 
@@ -195,128 +195,7 @@ __Plots derived from the Arduino Code__
 
 ---
 
-#### Arduino code for Autocorrelation of the PPG Signal
 
-We take a window of 75 samples and calculate the autocorelation for these 75 samples, before passing the data through a low pass (moving average) filter and then we also pass the data through a low pass (moving average) filter. This is done to understand how the presence of high frequency components affects the pulse rate or pitch period calculation. We calculate the time period by checking the sample at which the autocorlation reaches its 2nd maxima from the origin (the first one is at the origin iself). To get this 2nd maxima, we can find out the maxima in the data present after the first zero crossing. To find out the zero crossing, we have to make the signal zero mean. Another method is to find the maxima in the data present after after the global minima. (Please note that we are only considering an autocorelation function computed for _t>0_ to maintain causality.) 
-
-__Time Period (TP) is calculated as:__ (Index number of data point of 2nd maxima + 1) * 1/Fs 
-
-Where Fs is the sampling frequency and the assumption is that the index number starts from 0. 
-
-__Pulse Rate (PR) is calculated as:__ 60/ TP
-
-This is in beats per minute.
-
-__Code__
-```cpp
-float data[75] = {-87.17307638, -109.5495333, 11.00037444, ...}; 
-float test_data[75];
-float working_data[75];
-float average = 0;
-float average_1 = 0;
-float x =0;
-float max_val = 0;
-float pre_filtered_zero = 0;
-float pre_filter_maxima =0;
-float post_filtered_zero =0;
-float post_filter_maxima =0;
-float auto_corr_pre_moving_average[4][75];
-float auto_corr_post_moving_average[4][75];
-
-void setup() 
-{
-    Serial.begin(9600);
-}
-
-void loop() 
-{
-    average_1 = 0;
-    
-    for(int p = 0; p < 75; p++)
-    {
-      average_1 += data[p];   
-    }
-    
-    // FILTERED
-    // Moving Average
-    for (int i = 0; i< 75; i++)
-    { 
-    x = 0;
-    if (i<8)
-      {for(int k=0; k<i; k++)
-        {x += data[i-k]; 
-          }
-        }
-    else
-    {for(int j=0; j<8; j++)
-      {
-        x += data[i-j];
-        }
-      }
-    working_data[i] = x/8;
-    average+= working_data[i];
-    }
-    
-    // Zero Mean
-    for(int p =0; p<75; p++)
-    {
-      working_data[p] -= (average/75); 
-    }
-
-    // Autocorr
-    for(int i = 0; i < 75; i++)
-    {
-    x = 0;
-    for(int j = i; j < 75; j++)
-    {
-      x += working_data[j]*working_data[j-i];
-     }
-     auto_corr_post_moving_average[0][i] = x;
-     }
-
-    // Zero Crossing
-    post_filtered_zero = 0;
-    for(int i =0; i<75; i++)
-    {
-      if ((auto_corr_post_moving_average[0][i] * auto_corr_post_moving_average[0][i+1]) <0)
-      {
-        post_filtered_zero = i+1;
-        break;}
-      }
-    
-    
-    // 2nd Maxima
-    max_val = 0;
-    for(int i=post_filtered_zero; i<75; i++)
-    {
-      if(max_val <auto_corr_post_moving_average[0][i])
-      {
-        max_val = auto_corr_post_moving_average[0][i];
-        post_filter_maxima = i;
-       }
-     }
-
-    // Printing
-    for (int i =0; i< 75; i++)
-    {
-     Serial.print(auto_corr_post_moving_average[0][i]/auto_corr_post_moving_average[0][0]);
-     Serial.print(',');
-     Serial.print(post_filter_maxima/25.0);
-     Serial.print(',');
-     Serial.println(60/(post_filter_maxima/25.0)); 
-     }   
-  
-}
-
-```
-
-__Plots derived from the Arduino Code__
-
-<p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Arduino_Autocorrelation.PNG"/>
-</p>
-
-<p align = "center"> <i>Autocorrelation of the filtered PPG data.</i></p>
 ----
 
 
