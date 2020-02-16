@@ -267,14 +267,14 @@ title('FFT of Respiration');
 ```
 __Plots derived from the MATLAB Code__
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Plots_Matlab.jpg"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Plots_Matlab.jpg" width="1000"/>
 </p>
 
 __Pulse Rate calculated by using both DFT as well as Autocorrelation__
 
 | Pulse rate in calculated using Matlab  (in BPM)     |  Pulse rate calculated using Arduino  (in BPM)   |
-| ----------- | ----------- | ----------- |
-| 16     | 25.6      |  17.33 % |
+| ----------- | ----------- | 
+| 16     | 25.6      |
 
 
 ---
