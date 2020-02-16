@@ -186,15 +186,18 @@ void loop()
 __Plots derived from the Arduino Code__
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-04/Images/Magnitude%20Response%20DFT.PNG"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/FFT%20of%20all%20the%20Signals.PNG"/>
 </p>
 
-<p align = "center"> <i>Magnitude response of the DFT Spectrum.</i></p>
+<p align = "center"> <i>Plot respresents the Magnitude response of the DFT Spectrum. Blue Corresponds to the DFT of the Original Signal, Red to the DFT of the PPG signal and Green to the DFT of the Repiratory Signal</i></p>
+
+<p float="left" align = "center">
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Recontructed%20Signals.PNG"/>
+</p>
+
+<p align = "center"> <i>Plot represents the . Blue Corresponds to the reconstruction of the Original Signal, Red to the reconstruction of the PPG signal and Green to the reconstruction of the Repiratory Signal. The reconstructed signals look weird because they are clumped together and hence the varationns cannot be observed. </i></p>
 
 ---
-
-
-----
 
 
 __MATLAB Code__
@@ -270,9 +273,9 @@ __Plots derived from the MATLAB Code__
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Plots_Matlab.jpg" width="1000"/>
 </p>
 
-__Pulse Rate calculated by using both DFT as well as Autocorrelation__
+__Breathing Rate calculated by using both Matlab as well as Arduino__
 
-| Pulse rate in calculated using Matlab  (in BPM)     |  Pulse rate calculated using Arduino  (in BPM)   |
+| Breathing rate in calculated using Matlab  (in BPM)     |  Breathing rate calculated using Arduino  (in BPM)   |
 | ----------- | ----------- | 
 | 16     | 25.6      |
 
