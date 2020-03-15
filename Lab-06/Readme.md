@@ -48,15 +48,8 @@ To remove low frequency baseline components upto a certain frequency (say 0.4 Hz
 
 - By taking the inverse Z transform, the time domain equation is found out as a finite difference relation. Then the relation is manupulated to make the relation caual and work for time > 0.
 
-#### Arduino code for FFT filteration of the PPG Signal
+### Arduino code for baseline filteration of the PPG Signal
 
-We take all the samples of the signal and pass them through a low pass (moving average) filter to reduce the high frequency noise in the signal. Next we compute the DFT using the FFT algorithm. Once that is done we can filter out the repiratory signal as well as the PPG signal by removing the appropriate frequency components and then use the inverse FFT algorithm to get the seperate signals back. We also find the dominant frequency in the respiratory signal by finding the index (m_index) corresponding to the maximum value of the different frequencies of the magnitude response. This dominant frequency is then converted into BPM.
-
-__Pulse Rate (PR) is calculated as:__ 60 * Fs * (m_index) / Length of signal
-
-This is in beats per minute. 
-
-__Arduino Code__
 ```cpp
 #include <arduinoFFT.h>
 arduinoFFT FFT = arduinoFFT();
