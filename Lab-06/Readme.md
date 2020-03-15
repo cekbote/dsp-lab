@@ -28,10 +28,10 @@ The Pole-Zero Method is a very basic method for filter design, where poles and z
   <img src="https://www.dsprelated.com/josimages_new/filters/img1015.png" width="300"/>
 </p>
 
-This can be recursively written as follows: 
+The Transfer Function can be written as: 
 
 <p float="left" align = "center">
-  <img src="https://github.com/JatinKhare/DSP-2020-JK/blob/master/WEEK-%2005/equations/fft2.gif" width="300"/>
+  <img src="https://www.dsprelated.com/josimages_new/filters/img986.png" width="300"/>
 </p>
 
 
