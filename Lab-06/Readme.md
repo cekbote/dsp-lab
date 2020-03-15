@@ -19,10 +19,10 @@ Via
 2. The Data can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-05/Data)
 ---
 
-Discrete Fourier Transform (Using FFT)
+Pole-Zero Method for Filter Design
 ---
 
-The mathematical expression for calculating the individual frequency components of a signal using the FFT algorithm is as follows:
+The Pole-Zero Method is a very basic method for filter design, where poles and zero are placed on the Z plane. Depending on the placement of poles and zeros, the transfer function is found out. Now, the placement of poles and zeros are changed based on trial and error to get the desired Magnitude and Phase Response of the transfer function. Since this is a method based on trial and error, it is not recomended for complex filter designs, however, it can act as a primer for creating those complex filters. 
 
 <p float="left" align = "center">
   <img src="https://github.com/JatinKhare/DSP-2020-JK/blob/master/WEEK-%2005/equations/fft.gif" width="300"/>
