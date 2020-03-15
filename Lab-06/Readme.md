@@ -15,7 +15,7 @@ Via
 
 **Data and Code Links**
 
-1. The Codes can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-06/Code)
+1. The code can be found [here.](https://github.com/Chanakya-Ekbote/DSP-Lab/tree/master/Lab-06/Code)
 ---
 
 Pole-Zero Method for Filter Design
