@@ -35,6 +35,17 @@ The Transfer Function can be written as:
 </p>
 
 
+
+#### Steps for designing the filter
+
+To remove low frequency baseline components upto a certain frequency (say 0.4 Hz for tolerance), we follow the following steps.
+
+- Place a zero at |z|=1, for the frequency 0 Hz.
+
+- Place a pole for the frequency 0 Hz with |z| = r, where r = 1 - 2 * pi * Fc / Fs
+
+- The trasnfer function gain is calculated 
+
 #### Arduino code for FFT filteration of the PPG Signal
 
 We take all the samples of the signal and pass them through a low pass (moving average) filter to reduce the high frequency noise in the signal. Next we compute the DFT using the FFT algorithm. Once that is done we can filter out the repiratory signal as well as the PPG signal by removing the appropriate frequency components and then use the inverse FFT algorithm to get the seperate signals back. We also find the dominant frequency in the respiratory signal by finding the index (m_index) corresponding to the maximum value of the different frequencies of the magnitude response. This dominant frequency is then converted into BPM.
