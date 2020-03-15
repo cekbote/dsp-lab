@@ -146,17 +146,11 @@ fvtool(b,a,'Analysis','polezero');
 ```
 __Plots derived from the MATLAB Code__
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Plots_Matlab.jpg" width="1000"/>
+  <img src="https://github.com/JatinKhare/DSP-2020-JK/blob/master/WEEK-%2006/gifs/pole_zero.png" width = "430"/>
+  <img src="https://github.com/JatinKhare/DSP-2020-JK/blob/master/WEEK-%2006/gifs/magnitude.png" width = "430" /> 
+  <img src="https://github.com/JatinKhare/DSP-2020-JK/blob/master/WEEK-%2006/gifs/phase.png" width = "430" /> 
 </p>
 
-__Breathing Rate calculated by using both Matlab as well as Arduino__
-
-| Breathing rate in calculated using Matlab  (in BPM)     |  Breathing rate calculated using Arduino  (in BPM)   |
-| ----------- | ----------- | 
-| 16     | 25.6      |
-
-
----
 
 
 
