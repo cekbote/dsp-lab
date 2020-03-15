@@ -1,11 +1,11 @@
 
-Lab 5
+Lab 6
 ===========
 
 **Aim:**
 
-1. To filter out the Repiratory Signal as well as the PPG Signal from a combination of the both of them using the FFT. 
-2. To find the respiration rate using the FFT. 
+1. To remove the synthetic baseline signals using a filter designed using the Pole-Zero placement method. The baseline signals are sin signals with frequencies 0.1 Hz, 0.2 Hz and 0.25 Hz.  
+2. The Pole-Zero Plots as well as Magnitude and Phase Plots of the transfer function are to be plotted in MATLAB.
 
 Via
 
