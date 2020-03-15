@@ -44,7 +44,9 @@ To remove low frequency baseline components upto a certain frequency (say 0.4 Hz
 
 - Place a pole for the frequency 0 Hz with |z| = r, where r = 1 - 2 * pi * Fc / Fs
 
-- The trasnfer function gain is calculated 
+- The transfer function gain is calculated by making the magnitude response of the transfer function at the cut-off frequency.
+
+- By taking the inverse Z transform, the time domain equation is found out as a finite difference relation. Then the relation is manupulated to make the relation caual and work for time > 0.
 
 #### Arduino code for FFT filteration of the PPG Signal
 
