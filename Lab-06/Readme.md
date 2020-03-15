@@ -52,8 +52,8 @@ To remove low frequency baseline components upto a certain frequency (say 0.4 Hz
 
 ```cpp
 float x[]={-0.875693857,-0.919727917,-0.953165283, ...};
-const int n = sizeof(x)/sizeof(float);
 
+const int n = sizeof(x)/sizeof(float);
 float e[n];
 float k;
 float g;
@@ -115,10 +115,10 @@ void loop() {
 __Plots derived from the Arduino Code__
 
 <p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/FFT%20of%20all%20the%20Signals.PNG"/>
+  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-06/Images/Waveform.PNG"/>
 </p>
 
-<p align = "center"> <i>Plot respresents the Magnitude response of the DFT Spectrum. Blue Corresponds to the DFT of the Original Signal, Red to the DFT of the PPG signal and Green to the DFT of the Repiratory Signal</i></p>
+<p align = "center"> <i>Blue corresponds to the unfiltered PPG signals, Red to the filtered PPG signals.</i></p>
 
 <p float="left" align = "center">
   <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Recontructed%20Signals.PNG"/>
