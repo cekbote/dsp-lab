@@ -120,11 +120,13 @@ __Plots derived from the Arduino Code__
 
 <p align = "center"> <i>Blue corresponds to the unfiltered PPG signals, Red to the filtered PPG signals.</i></p>
 
-<p float="left" align = "center">
-  <img src="https://github.com/Chanakya-Ekbote/DSP-Lab/blob/master/Lab-05/Images/Recontructed%20Signals.PNG"/>
-</p>
+__Statistical Inferences__
 
-<p align = "center"> <i>Plot represents the . Blue Corresponds to the reconstruction of the Original Signal, Red to the reconstruction of the PPG signal and Green to the reconstruction of the Repiratory Signal. The reconstructed signals look weird because they are clumped together and hence the varationns cannot be observed. </i></p>
+| Root Mean Squared Error |  Mean Sqaured Error | Signal to Noise Error |
+| ----------- | ----------- | ----------- | 
+| 0.28 | 0.08 | 2.15 |
+
+
 
 ---
 
