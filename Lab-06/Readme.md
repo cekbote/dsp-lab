@@ -146,7 +146,7 @@ fvtool(b,a,'Analysis','polezero');
 ```
 __Plots derived from the MATLAB Code__
 <p float="left" align = "center">
-  <img src="https://github.com/JatinKhare/DSP-2020-JK/blob/master/WEEK-%2006/gifs/pole_zero.png" width = "300"/>
+  <img src="https://github.com/JatinKhare/DSP-2020-JK/blob/master/WEEK-%2006/gifs/pole_zero.png" width = "430"/>
 </p>
 
 <p float="left" align = "center">
