@@ -51,141 +51,62 @@ To remove low frequency baseline components upto a certain frequency (say 0.4 Hz
 ### Arduino code for baseline filteration of the PPG Signal
 
 ```cpp
-#include <arduinoFFT.h>
-arduinoFFT FFT = arduinoFFT();
-float data[300] = {-372.3628292,50.75906574,499.6210468, ...}; 
-float p = 0;
-double X[512];
-float N = 512;
-double average = 0;
-double x_mag_resp[512];
-float Pi = 3.14159;
-float inex;
-float peak;
-float PR = 0;
-const uint16_t samples = 512;
-const double samplingFrequency = 10;
-double vReal[512];
-double vImag[512];
-double respReal[512];
-double respImag[512];
-double resp[512];
-double resp_fft_mag[512];
-double ppgReal[512];
-double ppgImag[512];
-double ppg[512];
-double ppg_fft_mag[512];
-double index_ = 0;
-double data_[512];
+float x[]={-0.875693857,-0.919727917,-0.953165283, ...};
+const int n = sizeof(x)/sizeof(float);
 
+float e[n];
+float k;
+float g;
+float RMSE;
+float SNR;
+float sum_e=0;
+float x_sq=0;
 
-void setup() {
-  // put your setup code here, to run once:
+void setup() 
+{
   Serial.begin(9600);
-
 }
 
-void loop() 
-{
-  // Populating the values of x with zeros
-  for (int i = 0; i < N; i++)
-  {
-    vReal[i] = 0;
-    vImag[i] = 0;
-    }
+void loop() {
   
-
-  // Moving Average
-  for (int i = 0; i< 300; i++)
-  { 
-    p = 0;
-    if (i<8)
-      {for(int k=0; k<i; k++)
-        {p += data[i-k];
-          }
-        }
-    else
-    {for(int j=0; j<8; j++)
-      {
-        p += data[i-j];
-        }
-      }
-    vReal[i] = p;
-    average += vReal[i];
-  }
-
-  average = average / 512;
-
-  for (int i = 0; i < 512; i++)
-  {
-    vReal[i] -= average;
-    data_[i] = vReal[i];
-    }
-
-
-  // Computing the FFT
-  FFT.Windowing(vReal, samples, FFT_WIN_TYP_HAMMING, FFT_FORWARD);  /* Weigh data */
-  FFT.Compute(vReal, vImag, samples, FFT_FORWARD); /* Compute FFT */
-
+  float y[n]={0};
   
-  // Filtering
-  index_ = 0.5 * 512 / samplingFrequency;
-  for(int n = 0; n <N; n++)
+  for(int i=0;i<n;i++)
   {
-    if (n < index_ + 1 || n > (512 - index_))
-    {
-      ppgReal[n] = 0;
-      ppgImag [n] = 0;
-      respReal[n] = vReal[n];
-      respImag[n] = vImag[n];
-      }
-
-      else
-      {
-        respReal[n] = 0;
-        respImag [n] = 0;
-        ppgReal[n] = vReal[n];
-        ppgImag[n] = vImag[n];
-        }
-    }
-
-    // Index
-
-    for (int n = 1; n < index_; n++)
-    { if (peak < sqrt(respReal[n] * respReal[n] + respImag[n] * respImag[n]));
-      {
-        peak = sqrt(respReal[n] * respReal[n] + respImag[n] * respImag[n]);
-        inex = n;
-        }
-      }
-
-
-//   Printing the Freq Plots
-  for (int n = 0; n < N; n++)
-  {
-    Serial.println(sqrt(vReal[n] * vReal[n] + vImag[n] * vImag[n]));
-    Serial.print(',');
-    Serial.print(sqrt(ppgReal[n] * ppgReal[n] + ppgImag[n] * ppgImag[n]) );
-    Serial.print(',');
-    Serial.println(sqrt(respReal[n] * respReal[n] * respImag[n] * respImag[n])/10000.0);
-//    Serial.print(',');
-//    Serial.println(inex / 512 * 10 * 60);
+    x[i]+=0.1*sin(2*PI*(0.1/80)*i)+0.2*sin(2*PI*(0.2/80)*i)+0.15*sin(2*PI*(0.25/80)*i);
   }
-
-  // Printing the Time Plots
-  FFT.Compute(respReal, respImag, samples, FFT_REVERSE);
-  FFT.Compute(ppgReal, ppgImag, samples, FFT_REVERSE);
-  FFT.ComplexToMagnitude(respReal, respImag, samples);
-  FFT.ComplexToMagnitude(ppgReal, ppgImag, samples);
-  FFT.ComplexToMagnitude(vReal, vImag, samples);
-    for (int n = 0; n < N; n++)
+  
+  k = 2*cos(PI/100);
+  g = 0.3564;
+  sum_e = 0;
+  x_sq = 0;
+  
+  for(int i=3;i<n;i++)
   {
-    
-    Serial.print(sqrt(vReal[n] * vReal[n] + vImag[n] * vImag[n])/ 5.0);
-    Serial.print(',');
-    Serial.print(sqrt(ppgReal[n] * ppgReal[n] + ppgImag[n] * ppgImag[n]) * 10 );
-    Serial.print(',');
-    Serial.println(sqrt(respReal[n] * respReal[n] * respImag[n] * respImag[n]));
+    y[i]= 0.9686*y[i-1]+0.9843*x[i]-0.9843*x[i-1];
+    e[i] = y[i]-x[i];
+    sum_e += e[i]*e[i];
+    x_sq += x[i]*x[i];
+  }
+  
+  RMSE = sqrt(sum_e/sizeof(x));
+  SNR = 10*log(x_sq/sum_e);
+  
+  for(int i=0;i<n;i++)
+  {
+    Serial.print(5*x[i]);
+    Serial.print(",");
+    Serial.println(5*y[i]+5);
+    Serial.print("Root Mean Squared Error:");
+    Serial.print(",");
+    Serial.println(RMSE);
+    Serial.print("Mean Squared Error:");
+    Serial.print(",");
+    Serial.println(RMSE*RMSE);
+    Serial.print("Signal to Noise Error:");
+    Serial.print(",");
+    Serial.println(SNR);
+    Serial.println("");
   }
 }
 ```
