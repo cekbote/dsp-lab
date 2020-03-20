@@ -30,7 +30,7 @@ The Pole-Zero Method is a very basic method for filter design, where poles and z
 The Transfer Function can be written as: 
 
 <p float="left" align = "center">
-  <img src="https://www.dsprelated.com/josimages_new/filters/img986.png" width="400"/>
+  <img src="https://miro.medium.com/max/1700/1*I5MVGIrROrAnD3U_2Jm1Ng.png" width="400"/>
 </p>
 
 
